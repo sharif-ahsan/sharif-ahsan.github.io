@@ -666,6 +666,15 @@ strong { font-weight: 600; }
   justify-content: flex-end;
 }
 
+.headshot-img {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 5 / 6;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-xl);
+}
+
 
 /* ================================================================
    10. STATS BAR
