@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aric — Industrial & Production Engineering student specializing in Advanced CAD, Materials Research, and Manufacturing Processes. Portfolio for graduate admissions." />
+  <title>Aric | Industrial & Production Engineering Portfolio</title>
+
+  <!-- Google Fonts: Playfair Display (academic headings) + IBM Plex Sans (clean body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 (Free CDN) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       STICKY HEADER / NAVIGATION
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <!-- Logo / Name -->
+      <a href="#home" class="logo" aria-label="Aric - Home">
+        <span class="logo-name">Aric</span>
+        <span class="logo-tagline">Engineering Portfolio</span>
+      </a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Desktop + Mobile Nav -->
+      <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#home"      class="nav-link">Home</a></li>
+          <li><a href="#research"  class="nav-link">Academic &amp; Research</a></li>
+          <li><a href="#portfolio" class="nav-link">Technical Portfolio</a></li>
+          <li><a href="#about"     class="nav-link">About</a></li>
+          <li><a href="#contact"   class="nav-link nav-link--cta">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+
+      <!-- Left: Text Content -->
+      <div class="hero-text" data-animate="fade-up">
+        <p class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Industrial &amp; Production Engineering
+        </p>
+        <h1 class="hero-headline">
+          Designing the Future of<br />
+          <em>Industrial &amp; Production</em><br />
+          Engineering.
+        </h1>
+        <p class="hero-subheadline">
+          B.Sc. Student specializing in Advanced CAD, Materials Research,
+          and Manufacturing Processes — building solutions at the intersection
+          of sustainability and precision engineering.
+        </p>
+        <div class="hero-actions">
+          <a href="cv.pdf" download class="btn btn--primary">
+            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+            Download Full CV (PDF)
+          </a>
+          <a href="#portfolio" class="btn btn--secondary">
+            View Technical Projects
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Headshot Placeholder -->
+      <div class="hero-image" data-animate="fade-in">
+        <!--
+          ═══════════════════════════════════════════════
+          REPLACE THIS DIV WITH YOUR HEADSHOT IMAGE:
+          <img src="images/headshot.jpg" alt="Aric — Engineering Student" class="headshot-img" />
+          ═══════════════════════════════════════════════
+        -->
+        <div class="img-placeholder img-placeholder--headshot" role="img" aria-label="Headshot image placeholder">
+          <i class="fa-solid fa-user-tie placeholder-icon" aria-hidden="true"></i>
+          <span class="placeholder-label">[ INSERT HEADSHOT IMAGE HERE ]</span>
+          <span class="placeholder-size">Recommended: 600 × 700px</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Subtle background geometry -->
+    <div class="hero-bg-grid" aria-hidden="true"></div>
+  </section>
+
+
+  <!-- ============================================================
+       QUICK STATS BAR
+  ============================================================ -->
+  <section class="stats-bar" aria-label="Quick highlights">
+    <div class="container stats-inner">
+
+      <div class="stat-block" data-animate="fade-up" data-delay="0">
+        <div class="stat-icon-wrap">
+          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Academic Excellence</p>
+          <p class="stat-value">3.82 <span class="stat-unit">CGPA</span></p>
+          <p class="stat-meta">Expected Graduation: Dec 2027</p>
+        </div>
+      </div>
+
+      <div class="stat-divider" aria-hidden="true"></div>
+
+      <div class="stat-block" data-animate="fade-up" data-delay="100">
+        <div class="stat-icon-wrap">
+          <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Industry Certification</p>
+          <p class="stat-value">CSWA</p>
+          <p class="stat-meta">Certified SolidWorks Associate</p>
+        </div>
+      </div>
+
+      <div class="stat-divider" aria-hidden="true"></div>
+
+      <div class="stat-block" data-animate="fade-up" data-delay="200">
+        <div class="stat-icon-wrap">
+          <i class="fa-solid fa-flask" aria-hidden="true"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Research Focus</p>
+          <p class="stat-value">Biodegradable</p>
+          <p class="stat-meta">Composite Materials for Bio-Implants</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 1: FEATURED RESEARCH & ACADEMICS
+  ============================================================ -->
+  <section class="research section" id="research">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">Featured Research &amp; Academics</p>
+        <h2 class="section-title">Bridging Engineering and<br /><em>Sustainable Solutions</em></h2>
+        <div class="section-rule" aria-hidden="true"></div>
+      </div>
+
+      <!-- Research Content: Image Left, Text Right -->
+      <div class="research-content">
+
+        <!-- Left: Research Image Placeholder -->
+        <div class="research-image" data-animate="fade-right">
+          <!--
+            ═══════════════════════════════════════════════
+            REPLACE THIS DIV WITH YOUR DIAGRAM IMAGE:
+            <img src="images/bio-implant-diagram.jpg"
+                 alt="Bio-Implant Material Diagram — Biodegradable Composite Structure"
+                 class="research-img" />
+            ═══════════════════════════════════════════════
+          -->
+          <div class="img-placeholder img-placeholder--research" role="img" aria-label="Bio-implant diagram placeholder">
+            <i class="fa-solid fa-diagram-project placeholder-icon" aria-hidden="true"></i>
+            <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
+            <span class="placeholder-size">Bio-Implant Material Diagram</span>
+          </div>
+          <!-- Decorative label badge -->
+          <div class="research-badge" aria-hidden="true">
+            <i class="fa-solid fa-atom"></i>
+            Ongoing Research
+          </div>
+        </div>
+
+        <!-- Right: Text Content -->
+        <div class="research-text" data-animate="fade-left">
+          <div class="research-tag-row">
+            <span class="tag">Materials Science</span>
+            <span class="tag">Biomedical Engineering</span>
+            <span class="tag">Manufacturing</span>
+          </div>
+
+          <h3 class="research-heading">
+            Biodegradable Composite Materials<br />for Bio-Implant Applications
+          </h3>
+
+          <p class="research-body">
+            Currently conducting hands-on research developing <strong>biodegradable composite
+            materials</strong> for bio-implants. Focused on material strength, sustainability,
+            and manufacturing viability — exploring polymer matrix composites reinforced with
+            natural fibers to achieve optimal mechanical performance within biological environments.
+          </p>
+          <p class="research-body">
+            Research methods include tensile &amp; flexural testing, SEM analysis, and
+            computational stress simulation using ANSYS, with the goal of publishing
+            findings in a peer-reviewed materials science journal.
+          </p>
+
+          <!-- Key metrics -->
+          <div class="research-metrics">
+            <div class="metric">
+              <span class="metric-val">2+</span>
+              <span class="metric-desc">Years active research</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">4</span>
+              <span class="metric-desc">Testing methodologies</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">1</span>
+              <span class="metric-desc">Paper in preparation</span>
+            </div>
+          </div>
+
+          <a href="#" class="btn btn--primary">
+            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+            Read Abstract &amp; Publications
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Academic Coursework Strip -->
+      <div class="coursework-strip" data-animate="fade-up">
+        <p class="coursework-heading">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+          Relevant Coursework
+        </p>
+        <div class="course-tags">
+          <span class="course-tag">Advanced CAD &amp; CAM</span>
+          <span class="course-tag">Materials Engineering</span>
+          <span class="course-tag">FEA / FEM Analysis</span>
+          <span class="course-tag">Manufacturing Processes</span>
+          <span class="course-tag">Thermodynamics</span>
+          <span class="course-tag">Engineering Mechanics</span>
+          <span class="course-tag">Quality Control</span>
+          <span class="course-tag">Industrial Automation</span>
+          <span class="course-tag">Python for Engineers</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2: TECHNICAL & DESIGN PORTFOLIO
+  ============================================================ -->
+  <section class="portfolio section section--alt" id="portfolio">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">Technical &amp; Design Portfolio</p>
+        <h2 class="section-title">Precision Design &amp;<br /><em>Manufacturing</em></h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <p class="section-subtitle">
+          A curated selection of CAD models, industrial tooling designs,
+          and computational engineering projects.
+        </p>
+      </div>
+
+      <!-- 3-Column Project Card Grid -->
+      <div class="portfolio-grid">
+
+        <!-- ── CARD 1: SolidWorks Assembly ─────────────────── -->
+        <article class="project-card" data-animate="fade-up" data-delay="0">
+          <div class="card-media">
+            <!--
+              ═══════════════════════════════════════════════════
+              REPLACE THIS DIV WITH YOUR YOUTUBE EMBED:
+              <div class="video-embed-wrap">
+                <iframe
+                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                  title="Complex Assembly Design in SolidWorks"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write;
+                         encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              ═══════════════════════════════════════════════════
+            -->
+            <div class="video-placeholder" role="img" aria-label="YouTube embed placeholder">
+              <i class="fa-brands fa-youtube placeholder-icon placeholder-icon--video" aria-hidden="true"></i>
+              <span class="placeholder-label">[ INSERT YOUTUBE EMBED HERE ]</span>
+              <span class="placeholder-size">16 : 9 aspect ratio</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">
+              <i class="fa-solid fa-cube" aria-hidden="true"></i>
+              SolidWorks
+            </div>
+            <h3 class="card-title">Complex Assembly Design</h3>
+            <p class="card-text">
+              Full parametric 3D modeling of a multi-component mechanical assembly,
+              including constraint-based mating, tolerance analysis, and FEA stress
+              simulation to validate structural integrity under load.
+            </p>
+            <div class="card-tech-row">
+              <span class="tech-badge">SolidWorks</span>
+              <span class="tech-badge">FEA Simulation</span>
+              <span class="tech-badge">GD&amp;T</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              View Project Details
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- ── CARD 2: Mold Factory Tooling ───────────────── -->
+        <article class="project-card" data-animate="fade-up" data-delay="150">
+          <div class="card-media">
+            <!--
+              ═══════════════════════════════════════════════
+              REPLACE THIS DIV WITH YOUR IMAGE:
+              <img src="images/mold-tooling.jpg"
+                   alt="Mold Factory Tooling Design — Industrial Part"
+                   class="card-img" />
+              ═══════════════════════════════════════════════
+            -->
+            <div class="img-placeholder img-placeholder--card" role="img" aria-label="Tooling design image placeholder">
+              <i class="fa-solid fa-gear placeholder-icon" aria-hidden="true"></i>
+              <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
+              <span class="placeholder-size">Tooling Design Photo</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">
+              <i class="fa-solid fa-industry" aria-hidden="true"></i>
+              Industrial Design
+            </div>
+            <h3 class="card-title">Mold Factory Tooling Design</h3>
+            <p class="card-text">
+              Real-world industrial part design completed during current industry role.
+              Includes cavity and core design for injection moulding, draft angle
+              analysis, and design-for-manufacturability (DFM) review.
+            </p>
+            <div class="card-tech-row">
+              <span class="tech-badge">SolidWorks</span>
+              <span class="tech-badge">DFM</span>
+              <span class="tech-badge">Injection Moulding</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              View Project Details
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- ── CARD 3: Python / Computational ─────────────── -->
+        <article class="project-card" data-animate="fade-up" data-delay="300">
+          <div class="card-media">
+            <!--
+              ════════════════════════════════════════════════════
+              REPLACE THIS DIV WITH YOUR CODE/TERMINAL SCREENSHOT:
+              <img src="images/python-terminal.jpg"
+                   alt="Python Computational Engineering — Code Screenshot"
+                   class="card-img" />
+              ════════════════════════════════════════════════════
+            -->
+            <div class="img-placeholder img-placeholder--card img-placeholder--code" role="img" aria-label="Python code screenshot placeholder">
+              <i class="fa-brands fa-python placeholder-icon" aria-hidden="true"></i>
+              <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
+              <span class="placeholder-size">Code / Terminal Screenshot</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">
+              <i class="fa-solid fa-terminal" aria-hidden="true"></i>
+              Computational Engineering
+            </div>
+            <h3 class="card-title">Computational Logic (Python)</h3>
+            <p class="card-text">
+              Applying Python programming and computational logic to solve engineering
+              problems — including numerical methods for stress analysis, process
+              optimization algorithms, and automated data processing from lab tests.
+            </p>
+            <div class="card-tech-row">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">NumPy / SciPy</span>
+              <span class="tech-badge">Data Analysis</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              View Project Details
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /.portfolio-grid -->
+
+      <!-- See All Button -->
+      <div class="portfolio-cta" data-animate="fade-up">
+        <a href="#" class="btn btn--primary btn--large">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          See All Engineering Projects &amp; CAD Videos
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT SECTION
+  ============================================================ -->
+  <section class="about section" id="about">
+    <div class="container about-inner">
+
+      <div class="about-text" data-animate="fade-right">
+        <div class="section-header section-header--left">
+          <p class="section-eyebrow">About</p>
+          <h2 class="section-title">Engineer.<br /><em>Researcher. Builder.</em></h2>
+          <div class="section-rule" aria-hidden="true"></div>
+        </div>
+
+        <p class="about-body">
+          I am a final-year B.Sc. student in Industrial &amp; Production Engineering,
+          driven by a passion for materials science and sustainable manufacturing.
+          My work spans rigorous academic research to hands-on industry experience —
+          giving me a rare combination of theoretical depth and practical application.
+        </p>
+        <p class="about-body">
+          I am actively seeking <strong>fully funded Master's and PhD opportunities</strong>
+          in Materials Engineering, Advanced Manufacturing, or Biomedical Engineering
+          at leading research universities. My goal is to contribute to a research group
+          at the forefront of sustainable material innovation.
+        </p>
+
+        <!-- Skills / Tools Grid -->
+        <div class="skills-grid">
+          <div class="skill-group">
+            <p class="skill-group-title">
+              <i class="fa-solid fa-drafting-compass" aria-hidden="true"></i>
+              CAD &amp; Simulation
+            </p>
+            <ul class="skill-list">
+              <li>SolidWorks (CSWA Certified)</li>
+              <li>AutoCAD</li>
+              <li>ANSYS FEA</li>
+              <li>Fusion 360</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+              Programming
+            </p>
+            <ul class="skill-list">
+              <li>Python (NumPy, SciPy, Pandas)</li>
+              <li>MATLAB</li>
+              <li>C++ (Basics)</li>
+              <li>LaTeX</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">
+              <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+              Lab &amp; Testing
+            </p>
+            <ul class="skill-list">
+              <li>Tensile / Flexural Testing</li>
+              <li>SEM Analysis</li>
+              <li>Hardness Testing</li>
+              <li>XRD Characterization</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /.about-text -->
+
+      <!-- About Portrait -->
+      <div class="about-portrait" data-animate="fade-left">
+        <!--
+          ═══════════════════════════════════════════════
+          REPLACE THIS DIV WITH YOUR PROFESSIONAL PHOTO:
+          <img src="images/portrait.jpg"
+               alt="Aric — Industrial & Production Engineering Student"
+               class="portrait-img" />
+          ═══════════════════════════════════════════════
+        -->
+        <div class="img-placeholder img-placeholder--portrait" role="img" aria-label="Portrait image placeholder">
+          <i class="fa-solid fa-user placeholder-icon" aria-hidden="true"></i>
+          <span class="placeholder-label">[ INSERT IMAGE HERE: 600 × 750 ]</span>
+          <span class="placeholder-size">Professional Portrait Photo</span>
+        </div>
+        <!-- Floating quote card -->
+        <div class="quote-card" aria-hidden="true">
+          <p class="quote-text">"Engineering with purpose — where precision meets sustainability."</p>
+          <span class="quote-attr">— Aric</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER / CONTACT
+  ============================================================ -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-inner">
+
+      <!-- Top: CTA -->
+      <div class="footer-cta" data-animate="fade-up">
+        <p class="footer-eyebrow">Let's Connect</p>
+        <h2 class="footer-headline">
+          Ready to collaborate or<br /><em>discuss graduate opportunities?</em>
+        </h2>
+        <p class="footer-sub">
+          I am open to research collaborations, academic discussions,
+          and graduate program inquiries. Let's build something meaningful together.
+        </p>
+        <div class="footer-links-row">
+          <a href="mailto:your.email@example.com" class="footer-contact-btn">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            Email Me
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="footer-contact-btn">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            LinkedIn
+          </a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="footer-contact-btn">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Aric. All rights reserved.</p>
+        <p class="footer-stack">Built with HTML &amp; CSS — Hosted on GitHub Pages</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — Minimal, no dependencies
+  ============================================================ -->
+  <script>
+    /* ── 1. Sticky header shadow on scroll ─────────────────── */
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ── 2. Mobile nav toggle ───────────────────────────────── */
+    const toggleBtn = document.getElementById('navToggle');
+    const nav       = document.getElementById('mainNav');
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      toggleBtn.setAttribute('aria-expanded', isOpen);
+    });
+    /* Close nav when a link is clicked (mobile) */
+    nav.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ── 3. Active nav link on scroll ───────────────────────── */
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navLinks  = document.querySelectorAll('.nav-link');
+    const observer  = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    /* ── 4. Scroll-reveal animations ────────────────────────── */
+    const animEls = document.querySelectorAll('[data-animate]');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, parseInt(delay));
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    animEls.forEach(el => revealObs.observe(el));
+  </script>
+
+</body>
+</html>
