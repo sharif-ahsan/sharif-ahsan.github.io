@@ -3,613 +3,1485 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aric — Industrial & Production Engineering student specializing in Advanced CAD, Materials Research, and Manufacturing Processes. Portfolio for graduate admissions." />
-  <title>Aric | Industrial & Production Engineering Portfolio</title>
-
-  <!-- Google Fonts: Playfair Display (academic headings) + IBM Plex Sans (clean body) -->
+  <title>Aric — Industrial & Production Engineering</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome 6 (Free CDN) for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* RESET & VARIABLES */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f172a;
+      --navy-mid:    #1e293b;
+      --teal:        #0f766e;
+      --teal-light:  #14b8a6;
+      --slate:       #475569;
+      --slate-light: #94a3b8;
+      --pearl:       #f8fafc;
+      --white:       #ffffff;
+      --border:      #e2e8f0;
+      --dot:         rgba(15,118,110,0.07);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--pearl);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: 'DM Serif Display', serif; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; } 50% { opacity:.4; }
+    }
+    .fade-up  { animation: fadeUp 0.75s ease both; }
+    .d1 { animation-delay:.12s; }
+    .d2 { animation-delay:.26s; }
+    .d3 { animation-delay:.4s; }
+    .d4 { animation-delay:.54s; }
+
+    /* HEADER */
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background: var(--navy);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      transition: box-shadow .3s;
+    }
+    #header.scrolled { box-shadow:0 4px 32px rgba(0,0,0,.35); }
+    .header-inner {
+      height:68px; display:flex;
+      align-items:center; justify-content:space-between;
+    }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-box {
+      width:34px; height:34px; background:var(--teal);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:.85rem; color:#fff;
+    }
+    .logo-name { font-family:'DM Serif Display',serif; color:#fff; font-size:1.2rem; }
+
+    nav.desk { display:flex; gap:2rem; align-items:center; }
+    nav.desk a {
+      color:var(--slate-light); text-decoration:none;
+      font-size:.85rem; font-weight:500; letter-spacing:.03em;
+      position:relative; transition:color .2s;
+    }
+    nav.desk a::after {
+      content:''; position:absolute; bottom:-3px; left:0;
+      width:0; height:1.5px; background:var(--teal-light);
+      transition:width .3s;
+    }
+    nav.desk a:hover { color:#fff; }
+    nav.desk a:hover::after { width:100%; }
+
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      background:none; border:none; cursor:pointer; padding:4px;
+    }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; }
+
+    .mobile-nav {
+      display:none; flex-direction:column;
+      background: var(--navy-mid);
+      border-top:1px solid rgba(255,255,255,.05);
+      padding:1.25rem 1.5rem; gap:1rem;
+    }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a {
+      color:var(--slate-light); text-decoration:none; font-size:.95rem;
+      font-weight:500; padding-bottom:.7rem;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:color .2s;
+    }
+    .mobile-nav a:last-child { border-bottom:none; }
+    .mobile-nav a:hover { color:#fff; }
+
+    /* BUTTONS */
+    .btn-teal {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--teal); color:#fff;
+      padding:.75rem 1.75rem;
+      font-family:'DM Sans',sans-serif; font-weight:600; font-size:.875rem;
+      letter-spacing:.04em; text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s, transform .15s;
+    }
+    .btn-teal:hover { background:#0d6561; transform:translateY(-1px); }
+
+    .btn-outline {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--slate-light);
+      border:1.5px solid rgba(148,163,184,.35);
+      padding:.75rem 1.75rem;
+      font-family:'DM Sans',sans-serif; font-weight:600; font-size:.875rem;
+      letter-spacing:.04em; text-decoration:none; cursor:pointer;
+      transition:background .2s, color .2s, transform .15s;
+    }
+    .btn-outline:hover { background:rgba(255,255,255,.08); color:#fff; transform:translateY(-1px); }
+
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--slate-light);
+      border:1.5px solid rgba(148,163,184,.28);
+      padding:.75rem 1.75rem;
+      font-family:'DM Sans',sans-serif; font-weight:600; font-size:.875rem;
+      letter-spacing:.04em; text-decoration:none; cursor:pointer;
+      transition:background .2s, color .2s, transform .15s;
+    }
+    .btn-ghost:hover { background:rgba(255,255,255,.08); color:#fff; transform:translateY(-1px); }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      background:#f1f5f9; border:2px dashed #cbd5e1;
+      display:flex; align-items:center; justify-content:center;
+      color:#94a3b8; font-size:.78rem; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      text-align:center; padding:1rem;
+    }
+
+    /* SECTION COMMON */
+    section { scroll-margin-top:72px; }
+    .section-wrap { padding:5.5rem 0; }
+    .bg-white { background:var(--white); }
+    .bg-pearl { background:var(--pearl); }
+
+    .section-label {
+      display:flex; align-items:center; gap:10px; margin-bottom:.6rem;
+    }
+    .section-label::before {
+      content:''; display:block; width:28px; height:2px;
+      background:var(--teal); flex-shrink:0;
+    }
+    .section-label span {
+      font-size:.67rem; font-weight:700; color:var(--teal);
+      letter-spacing:.12em; text-transform:uppercase;
+    }
+    .section-title {
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(1.5rem,2.8vw,2.25rem);
+      line-height:1.22; color:var(--navy);
+    }
+    .section-subtitle {
+      color:var(--slate); font-size:.97rem;
+      line-height:1.75; max-width:540px; margin-top:.6rem;
+    }
+    .section-head { margin-bottom:3rem; }
+
+    /* CARD */
+    .card {
+      background:#fff; border:1px solid var(--border);
+      transition:transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(15,23,42,.1); }
+
+    /* TAGS */
+    .tag {
+      display:inline-block;
+      background:var(--pearl); border:1px solid var(--border);
+      padding:.22rem .6rem; font-size:.72rem; font-weight:500; color:var(--slate);
+    }
+    .tags-row { display:flex; gap:.45rem; flex-wrap:wrap; }
+    .badge-current {
+      background:rgba(13,148,136,.1); color:var(--teal);
+      border:1px solid rgba(15,118,110,.25);
+      padding:.18rem .55rem; font-size:.68rem; font-weight:700; letter-spacing:.07em;
+    }
+
+    /* ── HERO ── */
+    #home {
+      background: var(--navy);
+      padding-top:128px; padding-bottom:80px;
+      position:relative; overflow:hidden;
+    }
+    #home::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:radial-gradient(circle,var(--dot) 1px,transparent 1px);
+      background-size:28px 28px;
+    }
+    .corner-tl, .corner-br {
+      position:absolute; width:56px; height:56px; pointer-events:none;
+    }
+    .corner-tl { top:84px; left:44px;
+      border-top:1px solid rgba(20,184,166,.22);
+      border-left:1px solid rgba(20,184,166,.22); }
+    .corner-br { bottom:36px; right:44px;
+      border-bottom:1px solid rgba(20,184,166,.22);
+      border-right:1px solid rgba(20,184,166,.22); }
+
+    .hero-grid {
+      display:grid; grid-template-columns:1fr 400px;
+      gap:4rem; align-items:center; position:relative; z-index:1;
+    }
+    .hero-status {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(15,118,110,.14); border:1px solid rgba(20,184,166,.28);
+      padding:.35rem .85rem; font-size:.73rem; font-weight:600;
+      color:var(--teal-light); letter-spacing:.09em;
+      text-transform:uppercase; margin-bottom:1.5rem;
+    }
+    .pulse-dot {
+      width:6px; height:6px; background:var(--teal-light);
+      border-radius:50%; animation:pulse 2s infinite;
+    }
+    .hero-h1 {
+      font-family:'DM Serif Display',serif; color:#fff;
+      font-size:clamp(1.9rem,4.1vw,3.2rem);
+      line-height:1.17; letter-spacing:-.01em; margin-bottom:1.35rem;
+    }
+    .hero-h1 em { color:var(--teal-light); font-style:italic; }
+    .hero-sub {
+      color:var(--slate-light); font-size:1rem; line-height:1.8;
+      max-width:500px; margin-bottom:2.4rem;
+    }
+    .hero-sub strong { color:#fff; font-weight:500; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    .headshot-wrap { position:relative; }
+    .headshot-frame {
+      position:absolute; inset:-12px;
+      border:1px solid rgba(20,184,166,.18); pointer-events:none;
+    }
+    .headshot-img { position:relative; z-index:1; height:460px; }
+    .headshot-badge {
+      position:absolute; bottom:-18px; right:-18px; z-index:2;
+      background:var(--teal); padding:.55rem 1rem;
+      font-size:.7rem; font-weight:700; color:#fff;
+      letter-spacing:.08em; text-transform:uppercase;
+    }
+
+    /* ── STATS BAR ── */
+    #stats { background:#fff; border-bottom:1px solid var(--border); }
+    .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+    .stat-item {
+      display:flex; align-items:flex-start; gap:1rem;
+      padding:1.85rem 1.75rem; border-right:1px solid var(--border);
+      transition:transform .22s;
+    }
+    .stat-item:last-child { border-right:none; }
+    .stat-item:hover { transform:translateY(-3px); }
+    .stat-icon { font-size:1.5rem; flex-shrink:0; }
+    .stat-label {
+      font-size:.66rem; font-weight:700; color:var(--teal);
+      letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;
+    }
+    .stat-main { font-size:1rem; font-weight:700; color:var(--navy); }
+    .stat-sub  { font-size:.84rem; color:var(--slate); line-height:1.55; }
+
+    /* ── RESEARCH ── */
+    .research-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:3rem; align-items:center; margin-bottom:3.5rem;
+    }
+    .grant-badge {
+      display:inline-block;
+      background:rgba(15,118,110,.08); border:1px solid rgba(15,118,110,.2);
+      padding:.3rem .7rem; font-size:.7rem; font-weight:700;
+      color:var(--teal); letter-spacing:.08em;
+      text-transform:uppercase; margin-bottom:1.1rem;
+    }
+    .research-title {
+      font-family:'DM Serif Display',serif;
+      font-size:1.4rem; color:var(--navy); line-height:1.35; margin-bottom:1rem;
+    }
+    .research-body { color:var(--slate); line-height:1.82; font-size:.92rem; margin-bottom:1.1rem; }
+    .research-body strong { color:var(--navy); }
+
+    .honors-box { background:var(--pearl); border:1px solid var(--border); padding:2rem 2.5rem; }
+    .inner-label {
+      display:flex; align-items:center; gap:10px; margin-bottom:1rem;
+    }
+    .inner-label::before { content:''; display:block; width:22px; height:2px; background:var(--teal); }
+    .inner-label span { font-size:.66rem; font-weight:700; color:var(--teal); letter-spacing:.11em; text-transform:uppercase; }
+    .honors-title { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--navy); margin-bottom:1.3rem; }
+    .honor-row {
+      display:flex; align-items:flex-start; gap:1rem;
+      padding-bottom:.9rem; border-bottom:1px solid var(--border); margin-bottom:.9rem;
+    }
+    .honor-row:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
+    .honor-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+    .honor-main { font-weight:600; color:var(--navy); font-size:.93rem; }
+    .honor-sub  { color:var(--slate); font-size:.855rem; margin-top:2px; }
+    .honor-badge {
+      margin-left:auto; flex-shrink:0; padding:.2rem .6rem;
+      font-size:.7rem; font-weight:700; letter-spacing:.05em; color:#fff;
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline { position:relative; padding-left:2rem; }
+    .timeline::before {
+      content:''; position:absolute; left:5px; top:8px; bottom:0;
+      width:1px; background:var(--border);
+    }
+    .tl-item { position:relative; margin-bottom:2.1rem; }
+    .tl-item:last-child { margin-bottom:0; }
+    .tl-dot {
+      position:absolute; left:-28px; top:6px;
+      width:11px; height:11px; border-radius:50%;
+      background:var(--teal); border:2px solid var(--teal-light);
+    }
+    .tl-card { padding:1.65rem 2rem; }
+    .tl-head {
+      display:flex; justify-content:space-between;
+      align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:.6rem;
+    }
+    .tl-role { font-weight:700; font-size:1rem; color:var(--navy); }
+    .tl-org  { color:var(--teal); font-weight:500; font-size:.875rem; margin-top:3px; }
+    .tl-meta { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .tl-period { color:var(--slate-light); font-size:.8rem; font-weight:500; }
+    .tl-desc { color:var(--slate); font-size:.88rem; line-height:1.72; margin-bottom:1rem; }
+
+    /* ── LEADERSHIP ── */
+    .eca-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.75rem; }
+    .eca-card { padding:2rem; display:flex; flex-direction:column; }
+    .eca-icon { font-size:1.8rem; margin-bottom:.9rem; }
+    .eca-org  { font-weight:700; font-size:1rem; color:var(--navy); margin-bottom:.9rem; }
+    .eca-role-row {
+      display:flex; justify-content:space-between; align-items:center;
+      gap:8px; flex-wrap:wrap; padding-bottom:.55rem;
+      border-bottom:1px dashed var(--border); margin-bottom:.55rem;
+    }
+    .eca-role-title { font-weight:600; font-size:.875rem; color:var(--navy); }
+    .eca-role-period { font-size:.77rem; color:var(--slate-light); margin-top:2px; }
+    .eca-desc { color:var(--slate); font-size:.875rem; line-height:1.7; margin-top:.65rem; flex:1; }
+
+    /* ── PORTFOLIO ── */
+    .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; margin-bottom:3rem; }
+    .proj-card { overflow:hidden; }
+    .proj-body { padding:1.4rem; }
+    .proj-sub  { font-size:.66rem; font-weight:700; color:var(--teal); letter-spacing:.1em; text-transform:uppercase; margin-bottom:5px; }
+    .proj-title { font-weight:700; font-size:.97rem; color:var(--navy); margin-bottom:.5rem; }
+    .proj-desc  { color:var(--slate); font-size:.855rem; line-height:1.67; margin-bottom:.9rem; }
+    .proj-cta   { text-align:center; }
+
+    /* ── FOOTER ── */
+    #contact {
+      background:var(--navy); padding:5rem 0 2.5rem; color:#fff;
+    }
+    .footer-cta {
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      padding-bottom:4rem; margin-bottom:3rem;
+    }
+    .footer-kicker {
+      font-size:.67rem; font-weight:700; color:var(--teal-light);
+      letter-spacing:.13em; text-transform:uppercase; margin-bottom:1.25rem;
+    }
+    .footer-h2 {
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(1.5rem,2.8vw,2.2rem);
+      line-height:1.3; margin-bottom:1rem;
+    }
+    .footer-sub {
+      color:var(--slate-light); font-size:.93rem;
+      max-width:420px; margin:0 auto 2.5rem; line-height:1.72;
+    }
+    .footer-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .footer-bottom {
+      display:flex; justify-content:space-between;
+      align-items:center; flex-wrap:wrap; gap:1rem;
+    }
+    .footer-logo { display:flex; align-items:center; gap:10px; }
+    .footer-copy { color:var(--slate-light); font-size:.78rem; }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { color:var(--slate-light); text-decoration:none; font-size:.78rem; transition:color .2s; }
+    .footer-links a:hover { color:var(--teal-light); }
+
+    /* See Details button */
+    .see-details-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--teal); color:#fff;
+      border:none;
+      padding:.6rem 1.1rem; font-family:'DM Sans',sans-serif;
+      font-size:.78rem; font-weight:700; letter-spacing:.04em;
+      cursor:pointer; transition:background .2s, transform .15s;
+      white-space:nowrap;
+    }
+    .see-details-btn:hover {
+      background:#0d6561; transform:translateY(-1px);
+    }
+
+    /* Experience detail modal */
+    .exp-modal-overlay {
+      display:none; position:fixed; inset:0; z-index:200;
+      background:rgba(10,18,35,0.78); backdrop-filter:blur(6px);
+      align-items:flex-start; justify-content:center;
+      padding:2rem 1rem; overflow-y:auto;
+    }
+    .exp-modal-overlay.open { display:flex; }
+    .exp-modal-box {
+      background:#fff; width:100%; max-width:780px;
+      margin:auto; animation: fadeUp 0.35s ease both;
+    }
+    .exp-modal-header {
+      background:var(--navy); padding:1.5rem 2rem;
+      display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;
+    }
+    .exp-modal-role { font-family:'DM Serif Display',serif; color:#fff; font-size:1.2rem; }
+    .exp-modal-org  { color:var(--teal-light); font-size:.82rem; font-weight:500; margin-top:3px; }
+    .exp-modal-period { color:var(--slate-light); font-size:.75rem; margin-top:4px; }
+
+    /* Photo + detail entry */
+    .exp-entry {
+      border-bottom:1px solid var(--border); padding:1.75rem 2rem;
+    }
+    .exp-entry:last-child { border-bottom:none; }
+    .exp-entry-img {
+      width:100%; margin-bottom:1rem;
+    }
+    .exp-entry-title {
+      font-weight:700; font-size:.97rem; color:var(--navy); margin-bottom:.4rem;
+    }
+    .exp-entry-desc {
+      color:var(--slate); font-size:.875rem; line-height:1.75;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display:none; position:fixed; inset:0; z-index:200;
+      background:rgba(10,18,35,0.75); backdrop-filter:blur(6px);
+      align-items:flex-start; justify-content:center;
+      padding:2rem 1rem; overflow-y:auto;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal-box {
+      background:#fff; width:100%; max-width:960px;
+      margin:auto;
+      animation: fadeUp 0.35s ease both;
+    }
+    .modal-header {
+      background:var(--navy); padding:1.75rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .modal-title { font-family:'DM Serif Display',serif; color:#fff; font-size:1.4rem; }
+    .modal-close {
+      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
+      color:#fff; width:36px; height:36px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; transition:background .2s; flex-shrink:0;
+    }
+    .modal-close:hover { background:rgba(255,255,255,0.2); }
+    .modal-body { padding:2rem; }
+    .modal-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:1.5rem; margin-bottom:1.5rem;
+    }
+    .modal-section-label {
+      font-size:.67rem; font-weight:700; color:var(--teal);
+      letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:1.25rem; padding-bottom:.5rem;
+      border-bottom:1px solid var(--border);
+    }
+    @media (max-width:700px) {
+      .modal-grid { grid-template-columns:1fr; }
+      .research-modal-grid { grid-template-columns:1fr !important; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      nav.desk    { display:none; }
+      .hamburger  { display:flex; }
+      .hero-grid  { grid-template-columns:1fr; }
+      .headshot-wrap { display:none; }
+      .stats-grid { grid-template-columns:1fr; }
+      .stat-item  { border-right:none; border-bottom:1px solid var(--border); }
+      .stat-item:last-child { border-bottom:none; }
+      .research-grid { grid-template-columns:1fr; }
+      .eca-grid   { grid-template-columns:1fr; }
+      .projects-grid { grid-template-columns:1fr; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+      .footer-links  { justify-content:center; }
+    }
+    @media (max-width:600px) {
+      .honors-box  { padding:1.5rem; }
+      .tl-card     { padding:1.25rem; }
+      .eca-card    { padding:1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       STICKY HEADER / NAVIGATION
-  ============================================================ -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-
-      <!-- Logo / Name -->
-      <a href="#home" class="logo" aria-label="Aric - Home">
+<!-- HEADER -->
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#home" class="logo">
+        <div class="logo-box">A</div>
         <span class="logo-name">Aric</span>
-        <span class="logo-tagline">Engineering Portfolio</span>
       </a>
-
-      <!-- Hamburger (mobile) -->
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <nav class="desk">
+        <a href="#home">Home</a>
+        <a href="#research">Research &amp; Academics</a>
+        <a href="#experience">Experience &amp; Leadership</a>
+        <a href="#portfolio">Technical Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
-
-      <!-- Desktop + Mobile Nav -->
-      <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
-        <ul class="nav-list">
-          <li><a href="#home"      class="nav-link">Home</a></li>
-          <li><a href="#research"  class="nav-link">Academic &amp; Research</a></li>
-          <li><a href="#portfolio" class="nav-link">Technical Portfolio</a></li>
-          <li><a href="#about"     class="nav-link">About</a></li>
-          <li><a href="#contact"   class="nav-link nav-link--cta">Contact</a></li>
-        </ul>
-      </nav>
-
     </div>
-  </header>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home"       onclick="closeMenu()">Home</a>
+    <a href="#research"   onclick="closeMenu()">Research &amp; Academics</a>
+    <a href="#experience" onclick="closeMenu()">Experience &amp; Leadership</a>
+    <a href="#portfolio"  onclick="closeMenu()">Technical Portfolio</a>
+    <a href="#contact"    onclick="closeMenu()">Contact</a>
+  </nav>
+</header>
 
 
-  <!-- ============================================================
-       HERO SECTION
-  ============================================================ -->
-  <section class="hero" id="home">
-    <div class="container hero-inner">
-
-      <!-- Left: Text Content -->
-      <div class="hero-text" data-animate="fade-up">
-        <p class="hero-eyebrow">
-          <span class="eyebrow-dot"></span>
-          Industrial &amp; Production Engineering
-        </p>
-        <h1 class="hero-headline">
-          Designing the Future of<br />
-          <em>Industrial &amp; Production</em><br />
+<!-- HERO -->
+<section id="home">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-status fade-up">
+          <span class="pulse-dot"></span>
+          Industrial &amp; Production Engineering · AUST
+        </div>
+        <h1 class="hero-h1 fade-up d1">
+          Designing the Future of<br>
+          <em>Industrial &amp; Production</em><br>
           Engineering.
         </h1>
-        <p class="hero-subheadline">
-          B.Sc. Student specializing in Advanced CAD, Materials Research,
-          and Manufacturing Processes — building solutions at the intersection
-          of sustainability and precision engineering.
+        <p class="hero-sub fade-up d2">
+          3rd Year B.Sc. Student — specializing in Advanced CAD,
+          Materials Research, and Manufacturing Processes. Passionate about
+          sustainable engineering solutions.
         </p>
-        <div class="hero-actions">
-          <a href="cv.pdf" download class="btn btn--primary">
-            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+        <div class="hero-btns fade-up d3">
+          <a href="#" class="btn-teal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download Full CV (PDF)
           </a>
-          <a href="#portfolio" class="btn btn--secondary">
+          <a href="#portfolio" class="btn-outline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             View Technical Projects
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
       </div>
+      <div class="headshot-wrap fade-up d4">
+        <div class="headshot-frame"></div>
+        <div class="placeholder headshot-img">[ INSERT HEADSHOT ]</div>
 
-      <!-- Right: Headshot Placeholder -->
-      <div class="hero-image" data-animate="fade-in">
-        <img src="images/myimage.jpeg" alt="My profile photo" class="headshot-img" />
       </div>
+    </div>
+  </div>
+</section>
 
+
+<!-- STATS BAR -->
+<div id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon">🎓</div>
+        <div>
+          <div class="stat-label">Academic Excellence</div>
+          <div class="stat-main">3.82 CGPA</div>
+          <div class="stat-sub">Top 5% of Batch<br>Expected Grad: Dec 2027</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🔬</div>
+        <div>
+          <div class="stat-label">Research Funding</div>
+          <div class="stat-main">2.5 Lakh BDT Grant</div>
+          <div class="stat-sub">University Research Grant<br>Role: Co-Investigator</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🏅</div>
+        <div>
+          <div class="stat-label">Certification</div>
+          <div class="stat-main">CSWA Certified</div>
+          <div class="stat-sub">Certified SolidWorks Associate<br>Dassault Systèmes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SECTION 1: RESEARCH & ACADEMICS -->
+<section id="research" class="section-wrap bg-white">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Research &amp; Academics</span></div>
+      <h2 class="section-title">Bridging Engineering and<br>Sustainable Solutions</h2>
+      <p class="section-subtitle">
+        Combining rigorous academic performance with hands-on research in
+        biomedical materials and sustainable manufacturing.
+      </p>
     </div>
 
-    <!-- Subtle background geometry -->
-    <div class="hero-bg-grid" aria-hidden="true"></div>
-  </section>
-
-
-  <!-- ============================================================
-       QUICK STATS BAR
-  ============================================================ -->
-  <section class="stats-bar" aria-label="Quick highlights">
-    <div class="container stats-inner">
-
-      <div class="stat-block" data-animate="fade-up" data-delay="0">
-        <div class="stat-icon-wrap">
-          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-        </div>
-        <div class="stat-content">
-          <p class="stat-label">Academic Excellence</p>
-          <p class="stat-value">3.82 <span class="stat-unit">CGPA</span></p>
-          <p class="stat-meta">Expected Graduation: Dec 2027</p>
-        </div>
-      </div>
-
-      <div class="stat-divider" aria-hidden="true"></div>
-
-      <div class="stat-block" data-animate="fade-up" data-delay="100">
-        <div class="stat-icon-wrap">
-          <i class="fa-solid fa-certificate" aria-hidden="true"></i>
-        </div>
-        <div class="stat-content">
-          <p class="stat-label">Industry Certification</p>
-          <p class="stat-value">CSWA</p>
-          <p class="stat-meta">Certified SolidWorks Associate</p>
-        </div>
-      </div>
-
-      <div class="stat-divider" aria-hidden="true"></div>
-
-      <div class="stat-block" data-animate="fade-up" data-delay="200">
-        <div class="stat-icon-wrap">
-          <i class="fa-solid fa-flask" aria-hidden="true"></i>
-        </div>
-        <div class="stat-content">
-          <p class="stat-label">Research Focus</p>
-          <p class="stat-value">Biodegradable</p>
-          <p class="stat-meta">Composite Materials for Bio-Implants</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       SECTION 1: FEATURED RESEARCH & ACADEMICS
-  ============================================================ -->
-  <section class="research section" id="research">
-    <div class="container">
-
-      <!-- Section Header -->
-      <div class="section-header" data-animate="fade-up">
-        <p class="section-eyebrow">Featured Research &amp; Academics</p>
-        <h2 class="section-title">Bridging Engineering and<br /><em>Sustainable Solutions</em></h2>
-        <div class="section-rule" aria-hidden="true"></div>
-      </div>
-
-      <!-- Research Content: Image Left, Text Right -->
-      <div class="research-content">
-
-        <!-- Left: Research Image Placeholder -->
-        <div class="research-image" data-animate="fade-right">
-          <!--
-            ═══════════════════════════════════════════════
-            REPLACE THIS DIV WITH YOUR DIAGRAM IMAGE:
-            <img src="images/bio-implant-diagram.jpg"
-                 alt="Bio-Implant Material Diagram — Biodegradable Composite Structure"
-                 class="research-img" />
-            ═══════════════════════════════════════════════
-          -->
-          <div class="img-placeholder img-placeholder--research" role="img" aria-label="Bio-implant diagram placeholder">
-            <i class="fa-solid fa-diagram-project placeholder-icon" aria-hidden="true"></i>
-            <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
-            <span class="placeholder-size">Bio-Implant Material Diagram</span>
-          </div>
-          <!-- Decorative label badge -->
-          <div class="research-badge" aria-hidden="true">
-            <i class="fa-solid fa-atom"></i>
-            Ongoing Research
-          </div>
-        </div>
-
-        <!-- Right: Text Content -->
-        <div class="research-text" data-animate="fade-left">
-          <div class="research-tag-row">
-            <span class="tag">Materials Science</span>
-            <span class="tag">Biomedical Engineering</span>
-            <span class="tag">Manufacturing</span>
-          </div>
-
-          <h3 class="research-heading">
-            Biodegradable Composite Materials<br />for Bio-Implant Applications
-          </h3>
-
-          <p class="research-body">
-            Currently conducting hands-on research developing <strong>biodegradable composite
-            materials</strong> for bio-implants. Focused on material strength, sustainability,
-            and manufacturing viability — exploring polymer matrix composites reinforced with
-            natural fibers to achieve optimal mechanical performance within biological environments.
-          </p>
-          <p class="research-body">
-            Research methods include tensile &amp; flexural testing, SEM analysis, and
-            computational stress simulation using ANSYS, with the goal of publishing
-            findings in a peer-reviewed materials science journal.
-          </p>
-
-          <!-- Key metrics -->
-          <div class="research-metrics">
-            <div class="metric">
-              <span class="metric-val">2+</span>
-              <span class="metric-desc">Years active research</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">4</span>
-              <span class="metric-desc">Testing methodologies</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">1</span>
-              <span class="metric-desc">Paper in preparation</span>
-            </div>
-          </div>
-
-          <a href="#" class="btn btn--primary">
-            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-            Read Abstract &amp; Publications
-          </a>
-        </div>
-
-      </div>
-
-      <!-- Academic Coursework Strip -->
-      <div class="coursework-strip" data-animate="fade-up">
-        <p class="coursework-heading">
-          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-          Relevant Coursework
+    <div class="research-grid">
+      <div>
+        <div class="grant-badge">Funded Research · 2.5 Lakh BDT Grant</div>
+        <h3 class="research-title">
+          Biodegradable Composite Materials<br>for Bio-Implant Applications
+        </h3>
+        <p class="research-body">
+          Serving as <strong>Co-investigator</strong> on a university-funded research
+          project developing next-generation biodegradable composite materials for
+          bio-implants. The research focuses on optimizing material strength, ensuring
+          biodegradability timelines, and confirming manufacturing viability at scale —
+          with direct implications for sustainable biomedical engineering worldwide.
         </p>
-        <div class="course-tags">
-          <span class="course-tag">Advanced CAD &amp; CAM</span>
-          <span class="course-tag">Materials Engineering</span>
-          <span class="course-tag">FEA / FEM Analysis</span>
-          <span class="course-tag">Manufacturing Processes</span>
-          <span class="course-tag">Thermodynamics</span>
-          <span class="course-tag">Engineering Mechanics</span>
-          <span class="course-tag">Quality Control</span>
-          <span class="course-tag">Industrial Automation</span>
-          <span class="course-tag">Python for Engineers</span>
+        <div class="tags-row">
+          <span class="tag">Composite Materials</span>
+          <span class="tag">Bio-implants</span>
+          <span class="tag">Sustainability</span>
+          <span class="tag">Manufacturing</span>
+        </div>
+      </div>
+      <div class="placeholder" style="height:300px;">[ INSERT PROJECT IMAGE — Bio-Implant Material Diagram ]</div>
+    </div>
+
+    <div style="margin-bottom:3.5rem;">
+      <button onclick="openResearchModal()" class="btn-teal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        View Full Research Details
+      </button>
+    </div>
+
+    <div class="honors-box">
+      <div class="inner-label"><span>Academic Honors</span></div>
+      <h3 class="honors-title">Tuition Waiver Scholarships</h3>
+      <div class="honor-row">
+        <div class="honor-dot" style="background:#0f766e;"></div>
+        <div>
+          <div class="honor-main">Top 5% of Batch — Academic Rank</div>
+          <div class="honor-sub">Ranked in the top 5% of the batch based on cumulative academic performance.</div>
+        </div>
+        <div class="honor-badge" style="background:#0f766e;">CGPA 3.82</div>
+      </div>
+
+      <div class="honor-row">
+        <div class="honor-dot" style="background:#0d9488;"></div>
+        <div>
+          <div class="honor-main">Full-Free Tuition Waiver — 44,000 BDT</div>
+          <div class="honor-sub">Awarded for 3 consecutive semesters based on academic merit.</div>
+        </div>
+        <div class="honor-badge" style="background:#0d9488;">×3 Semesters</div>
+      </div>
+      <div class="honor-row">
+        <div class="honor-dot" style="background:#64748b;"></div>
+        <div>
+          <div class="honor-main">Half-Free Tuition Waiver — 22,000 BDT</div>
+          <div class="honor-sub">Awarded for academic merit in 1 semester.</div>
+        </div>
+        <div class="honor-badge" style="background:#64748b;">×1 Semester</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESEARCH MODAL -->
+<div class="modal-overlay" id="researchModal" onclick="handleResearchOverlayClick(event)">
+  <div class="modal-box" id="researchModalBox">
+
+    <div class="modal-header">
+      <h2 class="modal-title">Research — Biodegradable Composites for Bio-Implants</h2>
+      <button class="modal-close" onclick="closeResearchModal()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Overview -->
+      <div class="modal-section-label">Research Overview</div>
+      <div style="background:var(--pearl);border:1px solid var(--border);padding:1.75rem 2rem;margin-bottom:2rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+          <div>
+            <div style="font-size:.68rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">The Problem</div>
+            <p style="color:var(--slate);font-size:.9rem;line-height:1.8;">
+              Conventional metallic bio-implants — such as bone screws and plates — often require a second surgery for removal after healing. This adds cost, patient risk, and recovery time. The challenge is to engineer a material strong enough to function as an implant, yet capable of safely degrading inside the body over time.
+            </p>
+          </div>
+          <div>
+            <div style="font-size:.68rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Our Approach</div>
+            <p style="color:var(--slate);font-size:.9rem;line-height:1.8;">
+              This university-funded project (2.5 Lakh BDT grant) develops biodegradable polymer-composite materials reinforced with biocompatible fillers. We evaluate mechanical strength (tensile, compressive, flexural), degradation rate in simulated body fluid, and manufacturing feasibility using standard lab processes available at AUST.
+            </p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+          <div style="text-align:center;">
+            <div style="font-size:1.2rem;font-weight:700;color:var(--navy);">2.5 Lakh BDT</div>
+            <div style="font-size:.72rem;color:var(--slate);margin-top:3px;">University Grant</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:1.2rem;font-weight:700;color:var(--navy);">Co-Investigator</div>
+            <div style="font-size:.72rem;color:var(--slate);margin-top:3px;">My Role</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:1.2rem;font-weight:700;color:var(--navy);">Ongoing</div>
+            <div style="font-size:.72rem;color:var(--slate);margin-top:3px;">Project Status</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:1.2rem;font-weight:700;color:var(--navy);">AUST</div>
+            <div style="font-size:.72rem;color:var(--slate);margin-top:3px;">Institution</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Focus Areas -->
+      <div class="modal-section-label">Key Focus Areas</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;" class="research-modal-grid">
+        <div style="background:#fff;border:1px solid var(--border);padding:1.25rem;">
+          <div style="font-size:1.3rem;margin-bottom:.5rem;">🔩</div>
+          <div style="font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.4rem;">Material Strength</div>
+          <p style="font-size:.83rem;color:var(--slate);line-height:1.7;">Tensile, compressive, and flexural testing of composite samples to meet clinical load-bearing requirements.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);padding:1.25rem;">
+          <div style="font-size:1.3rem;margin-bottom:.5rem;">🌱</div>
+          <div style="font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.4rem;">Biodegradability</div>
+          <p style="font-size:.83rem;color:var(--slate);line-height:1.7;">Controlled degradation timelines tested in simulated body fluid (SBF) to match expected bone healing duration.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);padding:1.25rem;">
+          <div style="font-size:1.3rem;margin-bottom:.5rem;">⚙️</div>
+          <div style="font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.4rem;">Manufacturing Viability</div>
+          <p style="font-size:.83rem;color:var(--slate);line-height:1.7;">Assessing whether the composite can be fabricated consistently using accessible, cost-effective lab processes.</p>
+        </div>
+      </div>
+
+      <!-- Lab & Equipment Photos -->
+      <div class="modal-section-label">Lab &amp; Equipment Photos</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem;" class="research-modal-grid">
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Machine / Equipment 1 ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Equipment / Machine 1</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Machine / Equipment 2 ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Equipment / Machine 2</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Machine / Equipment 3 ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Equipment / Machine 3</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Material Sample / Specimen ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Material Samples</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Lab / Testing Setup ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Testing Setup</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+        <div>
+          <div class="placeholder" style="height:190px;font-size:.72rem;border-radius:0;">[ INSERT PHOTO — Results / Data / Charts ]</div>
+          <div style="padding:.7rem .5rem 0;font-size:.8rem;font-weight:600;color:var(--navy);">Results &amp; Data</div>
+          <div style="padding:.2rem .5rem 0;font-size:.75rem;color:var(--slate);">Add caption here</div>
+        </div>
+
+      </div>
+
+      <!-- Research Paper -->
+      <div class="modal-section-label">Research Paper &amp; Publication</div>
+      <div style="background:var(--navy);padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Publication Status</div>
+          <div style="font-family:'DM Serif Display',serif;color:#fff;font-size:1.15rem;margin-bottom:.4rem;">
+            Biodegradable Polymer Composites for Load-Bearing Bio-Implant Applications
+          </div>
+          <div style="font-size:.82rem;color:var(--slate-light);">Co-investigator · AUST · Manuscript in preparation</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+          <div style="background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.3);padding:.5rem 1rem;display:flex;align-items:center;gap:8px;">
+            <span style="width:8px;height:8px;background:var(--teal-light);border-radius:50%;animation:pulse 2s infinite;"></span>
+            <span style="font-size:.75rem;font-weight:700;color:var(--teal-light);letter-spacing:.07em;">COMING SOON</span>
+          </div>
+          <button disabled style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);
+            color:var(--slate-light);border:1.5px solid rgba(148,163,184,.2);
+            padding:.65rem 1.25rem;font-family:'DM Sans',sans-serif;font-weight:600;
+            font-size:.82rem;cursor:not-allowed;opacity:.6;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Paper
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div><!-- /research modal -->
+
+
+<!-- SECTION 2: WORK EXPERIENCE -->
+<section id="experience" class="section-wrap bg-pearl">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Work Experience</span></div>
+      <h2 class="section-title">Professional Experience</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Assistant Instructor</div>
+              <div class="tl-org">NAS Tech Engineering</div>
+            </div>
+            <div class="tl-meta">
+              <span class="badge-current">CURRENT</span>
+              <span class="tl-period">Dec 2025 – Present</span>
+            </div>
+          </div>
+          <p class="tl-desc">Conducting technical instruction sessions in CAD and engineering design. Mentoring junior trainees, supporting curriculum development, and bridging theory with hands-on practice for aspiring engineering students.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <div class="tags-row">
+              <span class="tag">Teaching</span>
+              <span class="tag">CAD Instruction</span>
+              <span class="tag">Mentorship</span>
+            </div>
+            <button onclick="openExpModal('exp1')" class="see-details-btn">
+              See Details
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Trainee Designer (SolidWorks)</div>
+              <div class="tl-org">NAS Tech Engineering</div>
+            </div>
+            <div class="tl-meta">
+              <span class="tl-period">July 2025 – Dec 2025</span>
+            </div>
+          </div>
+          <p class="tl-desc">Developed complex 3D models and mechanical assemblies for real-world industrial projects. Gained hands-on experience with mold factory part design and precision tolerancing using GD&amp;T standards.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <div class="tags-row">
+              <span class="tag">SolidWorks</span>
+              <span class="tag">3D Modeling</span>
+              <span class="tag">GD&amp;T</span>
+              <span class="tag">Industry</span>
+            </div>
+            <button onclick="openExpModal('exp2')" class="see-details-btn">
+              See Details
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">PowerPoint Designer</div>
+              <div class="tl-org">Bornomala Academy Ed-Tech</div>
+            </div>
+            <div class="tl-meta">
+              <span class="tl-period">2022 – 2024</span>
+            </div>
+          </div>
+          <p class="tl-desc">Designed comprehensive instructional slide decks for educators across multiple subjects. Contributed to improving digital learning content quality and visual communication standards at scale.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <div class="tags-row">
+              <span class="tag">Instructional Design</span>
+              <span class="tag">Ed-Tech</span>
+              <span class="tag">Visual Communication</span>
+            </div>
+            <button onclick="openExpModal('exp3')" class="see-details-btn">
+              See Details
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ============================================================
-       SECTION 2: TECHNICAL & DESIGN PORTFOLIO
-  ============================================================ -->
-  <section class="portfolio section section--alt" id="portfolio">
-    <div class="container">
+<!-- EXP MODAL 1: Assistant Instructor -->
+<div class="exp-modal-overlay" id="expModal-exp1" onclick="handleExpOverlay(event,'exp1')">
+  <div class="exp-modal-box" id="expModalBox-exp1">
+    <div class="exp-modal-header">
+      <div>
+        <div class="exp-modal-role">Assistant Instructor</div>
+        <div class="exp-modal-org">NAS Tech Engineering</div>
+        <div class="exp-modal-period">Dec 2025 – Present</div>
+      </div>
+      <button class="modal-close" onclick="closeExpModal('exp1')">✕</button>
+    </div>
+    <div>
 
-      <!-- Section Header -->
-      <div class="section-header" data-animate="fade-up">
-        <p class="section-eyebrow">Technical &amp; Design Portfolio</p>
-        <h2 class="section-title">Precision Design &amp;<br /><em>Manufacturing</em></h2>
-        <div class="section-rule" aria-hidden="true"></div>
-        <p class="section-subtitle">
-          A curated selection of CAD models, industrial tooling designs,
-          and computational engineering projects.
-        </p>
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Teaching / Classroom Session ]</div>
+        <div class="exp-entry-title">CAD Instruction Sessions</div>
+        <p class="exp-entry-desc">Conducted hands-on SolidWorks training sessions for students, walking them through part modeling, assembly design, and simulation workflows. Lessons were structured around real-world engineering problems to make concepts practical and memorable.</p>
       </div>
 
-      <!-- 3-Column Project Card Grid -->
-      <div class="portfolio-grid">
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Mentoring / One-on-One Session ]</div>
+        <div class="exp-entry-title">Mentoring Junior Trainees</div>
+        <p class="exp-entry-desc">Provided one-on-one guidance to junior trainees struggling with complex CAD concepts. Helped them debug designs, understand tolerance stacking, and develop professional modelling habits that meet industry standards.</p>
+      </div>
 
-        <!-- ── CARD 1: SolidWorks Assembly ─────────────────── -->
-        <article class="project-card" data-animate="fade-up" data-delay="0">
-          <div class="card-media">
-            <!--
-              ═══════════════════════════════════════════════════
-              REPLACE THIS DIV WITH YOUR YOUTUBE EMBED:
-              <div class="video-embed-wrap">
-                <iframe
-                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                  title="Complex Assembly Design in SolidWorks"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write;
-                         encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              </div>
-              ═══════════════════════════════════════════════════
-            -->
-            <div class="video-placeholder" role="img" aria-label="YouTube embed placeholder">
-              <i class="fa-brands fa-youtube placeholder-icon placeholder-icon--video" aria-hidden="true"></i>
-              <span class="placeholder-label">[ INSERT YOUTUBE EMBED HERE ]</span>
-              <span class="placeholder-size">16 : 9 aspect ratio</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-category">
-              <i class="fa-solid fa-cube" aria-hidden="true"></i>
-              SolidWorks
-            </div>
-            <h3 class="card-title">Complex Assembly Design</h3>
-            <p class="card-text">
-              Full parametric 3D modeling of a multi-component mechanical assembly,
-              including constraint-based mating, tolerance analysis, and FEA stress
-              simulation to validate structural integrity under load.
-            </p>
-            <div class="card-tech-row">
-              <span class="tech-badge">SolidWorks</span>
-              <span class="tech-badge">FEA Simulation</span>
-              <span class="tech-badge">GD&amp;T</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">
-              View Project Details
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Curriculum / Course Material ]</div>
+        <div class="exp-entry-title">Curriculum Development Support</div>
+        <p class="exp-entry-desc">Assisted in structuring the training curriculum — organizing modules by difficulty, creating exercise files, and aligning lesson content with CSWA exam objectives to improve student certification success rates.</p>
+      </div>
 
-        <!-- ── CARD 2: Mold Factory Tooling ───────────────── -->
-        <article class="project-card" data-animate="fade-up" data-delay="150">
-          <div class="card-media">
-            <!--
-              ═══════════════════════════════════════════════
-              REPLACE THIS DIV WITH YOUR IMAGE:
-              <img src="images/mold-tooling.jpg"
-                   alt="Mold Factory Tooling Design — Industrial Part"
-                   class="card-img" />
-              ═══════════════════════════════════════════════
-            -->
-            <div class="img-placeholder img-placeholder--card" role="img" aria-label="Tooling design image placeholder">
-              <i class="fa-solid fa-gear placeholder-icon" aria-hidden="true"></i>
-              <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
-              <span class="placeholder-size">Tooling Design Photo</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-category">
-              <i class="fa-solid fa-industry" aria-hidden="true"></i>
-              Industrial Design
-            </div>
-            <h3 class="card-title">Mold Factory Tooling Design</h3>
-            <p class="card-text">
-              Real-world industrial part design completed during current industry role.
-              Includes cavity and core design for injection moulding, draft angle
-              analysis, and design-for-manufacturability (DFM) review.
-            </p>
-            <div class="card-tech-row">
-              <span class="tech-badge">SolidWorks</span>
-              <span class="tech-badge">DFM</span>
-              <span class="tech-badge">Injection Moulding</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">
-              View Project Details
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
+    </div>
+  </div>
+</div>
 
-        <!-- ── CARD 3: Python / Computational ─────────────── -->
-        <article class="project-card" data-animate="fade-up" data-delay="300">
-          <div class="card-media">
-            <!--
-              ════════════════════════════════════════════════════
-              REPLACE THIS DIV WITH YOUR CODE/TERMINAL SCREENSHOT:
-              <img src="images/python-terminal.jpg"
-                   alt="Python Computational Engineering — Code Screenshot"
-                   class="card-img" />
-              ════════════════════════════════════════════════════
-            -->
-            <div class="img-placeholder img-placeholder--card img-placeholder--code" role="img" aria-label="Python code screenshot placeholder">
-              <i class="fa-brands fa-python placeholder-icon" aria-hidden="true"></i>
-              <span class="placeholder-label">[ INSERT IMAGE HERE: 800 × 600 ]</span>
-              <span class="placeholder-size">Code / Terminal Screenshot</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-category">
-              <i class="fa-solid fa-terminal" aria-hidden="true"></i>
-              Computational Engineering
-            </div>
-            <h3 class="card-title">Computational Logic (Python)</h3>
-            <p class="card-text">
-              Applying Python programming and computational logic to solve engineering
-              problems — including numerical methods for stress analysis, process
-              optimization algorithms, and automated data processing from lab tests.
-            </p>
-            <div class="card-tech-row">
-              <span class="tech-badge">Python</span>
-              <span class="tech-badge">NumPy / SciPy</span>
-              <span class="tech-badge">Data Analysis</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">
-              View Project Details
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
+<!-- EXP MODAL 2: Trainee Designer -->
+<div class="exp-modal-overlay" id="expModal-exp2" onclick="handleExpOverlay(event,'exp2')">
+  <div class="exp-modal-box" id="expModalBox-exp2">
+    <div class="exp-modal-header">
+      <div>
+        <div class="exp-modal-role">Trainee Designer (SolidWorks)</div>
+        <div class="exp-modal-org">NAS Tech Engineering</div>
+        <div class="exp-modal-period">July 2025 – Dec 2025</div>
+      </div>
+      <button class="modal-close" onclick="closeExpModal('exp2')">✕</button>
+    </div>
+    <div>
 
-      </div><!-- /.portfolio-grid -->
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — 3D Model / SolidWorks Screen ]</div>
+        <div class="exp-entry-title">3D Part & Assembly Modeling</div>
+        <p class="exp-entry-desc">Designed complex multi-part mechanical assemblies in SolidWorks for real client projects. Applied proper mate constraints, motion studies, and interference detection to ensure parts fit and functioned correctly before production.</p>
+      </div>
 
-      <!-- See All Button -->
-      <div class="portfolio-cta" data-animate="fade-up">
-        <a href="#" class="btn btn--primary btn--large">
-          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-          See All Engineering Projects &amp; CAD Videos
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Mold / Factory / Workshop ]</div>
+        <div class="exp-entry-title">Mold Factory Part Design</div>
+        <p class="exp-entry-desc">Worked directly on mold factory part designs — translating client specifications and rough sketches into precise 3D models and 2D production drawings with full GD&T callouts, surface finish symbols, and material callouts ready for manufacturing.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Engineering Drawing / Blueprint ]</div>
+        <div class="exp-entry-title">Production Drawings & GD&T</div>
+        <p class="exp-entry-desc">Generated detailed 2D engineering drawings from 3D models, applying Geometric Dimensioning and Tolerancing (GD&T) standards to communicate design intent clearly to machinists and quality control teams on the shop floor.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- EXP MODAL 3: PowerPoint Designer -->
+<div class="exp-modal-overlay" id="expModal-exp3" onclick="handleExpOverlay(event,'exp3')">
+  <div class="exp-modal-box" id="expModalBox-exp3">
+    <div class="exp-modal-header">
+      <div>
+        <div class="exp-modal-role">PowerPoint Designer</div>
+        <div class="exp-modal-org">Bornomala Academy Ed-Tech</div>
+        <div class="exp-modal-period">2022 – 2024</div>
+      </div>
+      <button class="modal-close" onclick="closeExpModal('exp3')">✕</button>
+    </div>
+    <div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Slide Design / Screenshot ]</div>
+        <div class="exp-entry-title">Instructional Slide Design</div>
+        <p class="exp-entry-desc">Designed visually consistent and pedagogically structured slide decks for educators across subjects including science, mathematics, and Bangla. Each deck followed a clear visual hierarchy — title, concept, example, summary — to aid student comprehension.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Slide Sample / Before & After ]</div>
+        <div class="exp-entry-title">Visual Communication & Branding</div>
+        <p class="exp-entry-desc">Established and maintained a consistent visual style across all course materials — custom color palettes, icon sets, infographics, and typography systems — that gave Bornomala Academy a professional and trustworthy appearance for students and parents.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Volume of Work / Slide Collection ]</div>
+        <div class="exp-entry-title">Scale & Volume of Work</div>
+        <p class="exp-entry-desc">Produced dozens of complete slide decks over two years, contributing to a large library of digital learning content used by educators across multiple courses. Developed efficient design workflows that reduced production time without compromising quality.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- SECTION 3: LEADERSHIP -->
+<section id="leadership" class="section-wrap bg-white">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Leadership &amp; ECA</span></div>
+      <h2 class="section-title">Leadership &amp; Competitions</h2>
+    </div>
+
+    <div class="eca-grid">
+
+      <div class="card eca-card">
+        <div class="eca-icon">🏛️</div>
+        <div class="eca-org">AUST IEOM Student Chapter</div>
+        <div class="eca-role-row">
+          <div>
+            <div class="eca-role-title">Jr. Asst. Director — Communication &amp; Membership</div>
+            <div class="eca-role-period">2025 – Present</div>
+          </div>
+          <span class="badge-current">ACTIVE</span>
+        </div>
+        <div class="eca-role-row" style="border-bottom:none;margin-bottom:0;">
+          <div>
+            <div class="eca-role-title">General Member</div>
+            <div class="eca-role-period">2024 – 2025</div>
+          </div>
+        </div>
+        <p class="eca-desc">Active contributor to the Institute for Engineering and Operations Management student chapter — driving communication strategies, member recruitment, and community events.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-top:1rem;">
+          <div></div>
+          <button onclick="openExpModal('eca1')" class="see-details-btn">
+            See Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card eca-card">
+        <div class="eca-icon">🏆</div>
+        <div class="eca-org">Mindspark 2024</div>
+        <div class="eca-role-row" style="border-bottom:none;margin-bottom:0;">
+          <div>
+            <div class="eca-role-title">Top 10 Finalist — Business Case Competition</div>
+            <div class="eca-role-period">2024</div>
+          </div>
+        </div>
+        <p class="eca-desc">Competed against teams from top universities across Bangladesh, advancing to the Top 10 through rigorous multi-round business case analysis and strategic presentation to industry judges.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-top:1rem;">
+          <div></div>
+          <button onclick="openExpModal('eca2')" class="see-details-btn">
+            See Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ECA MODAL 1: IEOM -->
+<div class="exp-modal-overlay" id="expModal-eca1" onclick="handleExpOverlay(event,'eca1')">
+  <div class="exp-modal-box" id="expModalBox-eca1">
+    <div class="exp-modal-header">
+      <div>
+        <div class="exp-modal-role">AUST IEOM Student Chapter</div>
+        <div class="exp-modal-org">Jr. Asst. Director — Communication &amp; Membership</div>
+        <div class="exp-modal-period">2024 – Present</div>
+      </div>
+      <button class="modal-close" onclick="closeExpModal('eca1')">✕</button>
+    </div>
+    <div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Chapter Event / Meeting ]</div>
+        <div class="exp-entry-title">Chapter Events & Meetings</div>
+        <p class="exp-entry-desc">Actively participated in and helped organize chapter meetings, seminars, and workshops. Contributed to planning sessions that brought together engineering students interested in operations management and industrial engineering topics.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Communication / Outreach Work ]</div>
+        <div class="exp-entry-title">Communication & Outreach</div>
+        <p class="exp-entry-desc">As Jr. Asst. Director of Communication, managed outreach efforts to engage both existing members and prospective students. Drafted announcements, coordinated with other chapter officers, and helped maintain the chapter's presence on campus.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Membership Drive / Group Photo ]</div>
+        <div class="exp-entry-title">Membership Drive</div>
+        <p class="exp-entry-desc">Played an active role in the membership drive — reaching out to junior students, presenting the value of IEOM membership, and helping grow the chapter's active member base through campus engagement and peer referrals.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ECA MODAL 2: Mindspark -->
+<div class="exp-modal-overlay" id="expModal-eca2" onclick="handleExpOverlay(event,'eca2')">
+  <div class="exp-modal-box" id="expModalBox-eca2">
+    <div class="exp-modal-header">
+      <div>
+        <div class="exp-modal-role">Mindspark 2024</div>
+        <div class="exp-modal-org">Top 10 Finalist — Business Case Competition</div>
+        <div class="exp-modal-period">2024</div>
+      </div>
+      <button class="modal-close" onclick="closeExpModal('eca2')">✕</button>
+    </div>
+    <div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Competition / Event ]</div>
+        <div class="exp-entry-title">The Competition</div>
+        <p class="exp-entry-desc">Mindspark 2024 was an inter-university business case competition that brought together teams from top institutions across Bangladesh. The competition tested analytical thinking, business strategy, and presentation skills across multiple elimination rounds.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Case Presentation / Team ]</div>
+        <div class="exp-entry-title">Our Approach & Presentation</div>
+        <p class="exp-entry-desc">Our team analyzed a complex real-world business case and developed a structured solution covering market analysis, operational strategy, and financial projections. We presented our findings to a panel of industry judges, advancing through multiple rounds to reach the Top 10 final.</p>
+      </div>
+
+      <div class="exp-entry">
+        <div class="placeholder exp-entry-img" style="height:220px;font-size:.75rem;">[ INSERT PHOTO — Certificate / Award / Result ]</div>
+        <div class="exp-entry-title">Result & Takeaway</div>
+        <p class="exp-entry-desc">Finishing in the Top 10 out of all competing teams was a strong validation of our team's analytical and communication skills. The experience sharpened my ability to think critically under pressure, frame engineering problems in a business context, and present ideas persuasively.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- SECTION 4: PORTFOLIO -->
+<section id="portfolio" class="section-wrap bg-pearl">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Technical Portfolio</span></div>
+      <h2 class="section-title">Precision Design &amp; Manufacturing</h2>
+      <p class="section-subtitle">A selection of design, simulation, and programming projects demonstrating technical depth and practical problem-solving.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT YOUTUBE 16:9 ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">SolidWorks</div>
+          <div class="proj-title">Complex Assembly Design</div>
+          <p class="proj-desc">End-to-end 3D modeling of multi-part mechanical assemblies with contact set definitions, motion studies, and FEA stress simulations.</p>
+          <div class="tags-row">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">FEA</span>
+            <span class="tag">Assembly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">Mold Factory Experience</div>
+          <div class="proj-title">Industrial Tooling Design</div>
+          <p class="proj-desc">Real-world part design for a local mold manufacturing facility — from client spec to final production drawing with GD&amp;T callouts.</p>
+          <div class="tags-row">
+            <span class="tag">Tooling</span>
+            <span class="tag">GD&amp;T</span>
+            <span class="tag">Production</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">Python Engineering</div>
+          <div class="proj-title">Computational Logic</div>
+          <p class="proj-desc">Applying Python to engineering problems — numerical methods, data analysis pipelines, and process optimization algorithms.</p>
+          <div class="tags-row">
+            <span class="tag">Python</span>
+            <span class="tag">Numerical Methods</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="proj-cta">
+      <button onclick="openModal()" class="btn-teal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        See All Projects &amp; CAD Videos
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ALL PROJECTS MODAL -->
+<div class="modal-overlay" id="projectsModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+
+    <div class="modal-header">
+      <h2 class="modal-title">All Projects &amp; CAD Videos</h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- CAD & SolidWorks -->
+      <div class="modal-section-label">CAD &amp; SolidWorks Design</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks</div>
+            <div class="proj-title">Complex Assembly Design</div>
+            <p class="proj-desc">Multi-part mechanical assemblies with motion studies and FEA stress simulations.</p>
+            <div class="tags-row"><span class="tag">SolidWorks</span><span class="tag">FEA</span><span class="tag">Assembly</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks</div>
+            <div class="proj-title">Parametric Part Modeling</div>
+            <p class="proj-desc">Feature-based parametric modeling of precision mechanical parts with design tables.</p>
+            <div class="tags-row"><span class="tag">Parametric</span><span class="tag">Part Design</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks Simulation</div>
+            <div class="proj-title">Stress &amp; Thermal Analysis</div>
+            <p class="proj-desc">Finite element analysis on structural components under real-world loading conditions.</p>
+            <div class="tags-row"><span class="tag">FEA</span><span class="tag">Simulation</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Industrial Design -->
+      <div class="modal-section-label" style="margin-top:1.5rem;">Industrial &amp; Tooling Design</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Mold Factory</div>
+            <div class="proj-title">Industrial Tooling Design</div>
+            <p class="proj-desc">Real-world mold factory part design from client spec to production drawing with GD&amp;T.</p>
+            <div class="tags-row"><span class="tag">Tooling</span><span class="tag">GD&amp;T</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Manufacturing</div>
+            <div class="proj-title">Fixture &amp; Jig Design</div>
+            <p class="proj-desc">Designed production fixtures and jigs to improve repeatability and reduce setup time.</p>
+            <div class="tags-row"><span class="tag">Fixtures</span><span class="tag">Production</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Bio-Materials Research</div>
+            <div class="proj-title">Composite Material Samples</div>
+            <p class="proj-desc">Physical prototypes and test specimens from the university-funded bio-implant research project.</p>
+            <div class="tags-row"><span class="tag">Research</span><span class="tag">Materials</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Programming -->
+      <div class="modal-section-label" style="margin-top:1.5rem;">Computational &amp; Programming</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Python</div>
+            <div class="proj-title">Computational Logic</div>
+            <p class="proj-desc">Numerical methods and process optimization algorithms applied to engineering problems.</p>
+            <div class="tags-row"><span class="tag">Python</span><span class="tag">Algorithms</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Data Analysis</div>
+            <div class="proj-title">Engineering Data Pipelines</div>
+            <p class="proj-desc">Processing and visualizing experimental data from materials testing using Python and Pandas.</p>
+            <div class="tags-row"><span class="tag">Pandas</span><span class="tag">Data Viz</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card" style="border:2px dashed var(--border);box-shadow:none;background:var(--pearl);display:flex;align-items:center;justify-content:center;min-height:200px;">
+          <div style="text-align:center;padding:1.5rem;">
+            <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--slate);">More projects coming soon</div>
+            <div style="font-size:.75rem;color:var(--slate-light);margin-top:.3rem;">Updated each semester</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div><!-- /modal-overlay -->
+
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-cta">
+      <div class="footer-kicker">Get In Touch</div>
+      <h2 class="footer-h2">
+        Ready to collaborate or discuss<br>graduate opportunities?
+      </h2>
+      <p class="footer-sub">
+        Whether you're a potential research advisor, admissions committee member,
+        or industry collaborator — I'd love to connect.
+      </p>
+      <div class="footer-btns">
+        <a href="/cdn-cgi/l/email-protection#ceafbca7ad8eaba3afa7a2e0ada1a3" class="btn-teal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send an Email
+        </a>
+        <a href="#" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
         </a>
       </div>
-
     </div>
-  </section>
 
-
-  <!-- ============================================================
-       ABOUT SECTION
-  ============================================================ -->
-  <section class="about section" id="about">
-    <div class="container about-inner">
-
-      <div class="about-text" data-animate="fade-right">
-        <div class="section-header section-header--left">
-          <p class="section-eyebrow">About</p>
-          <h2 class="section-title">Engineer.<br /><em>Researcher. Builder.</em></h2>
-          <div class="section-rule" aria-hidden="true"></div>
-        </div>
-
-        <p class="about-body">
-          I am a final-year B.Sc. student in Industrial &amp; Production Engineering,
-          driven by a passion for materials science and sustainable manufacturing.
-          My work spans rigorous academic research to hands-on industry experience —
-          giving me a rare combination of theoretical depth and practical application.
-        </p>
-        <p class="about-body">
-          I am actively seeking <strong>fully funded Master's and PhD opportunities</strong>
-          in Materials Engineering, Advanced Manufacturing, or Biomedical Engineering
-          at leading research universities. My goal is to contribute to a research group
-          at the forefront of sustainable material innovation.
-        </p>
-
-        <!-- Skills / Tools Grid -->
-        <div class="skills-grid">
-          <div class="skill-group">
-            <p class="skill-group-title">
-              <i class="fa-solid fa-drafting-compass" aria-hidden="true"></i>
-              CAD &amp; Simulation
-            </p>
-            <ul class="skill-list">
-              <li>SolidWorks (CSWA Certified)</li>
-              <li>AutoCAD</li>
-              <li>ANSYS FEA</li>
-              <li>Fusion 360</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-title">
-              <i class="fa-solid fa-code" aria-hidden="true"></i>
-              Programming
-            </p>
-            <ul class="skill-list">
-              <li>Python (NumPy, SciPy, Pandas)</li>
-              <li>MATLAB</li>
-              <li>C++ (Basics)</li>
-              <li>LaTeX</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-title">
-              <i class="fa-solid fa-microscope" aria-hidden="true"></i>
-              Lab &amp; Testing
-            </p>
-            <ul class="skill-list">
-              <li>Tensile / Flexural Testing</li>
-              <li>SEM Analysis</li>
-              <li>Hardness Testing</li>
-              <li>XRD Characterization</li>
-            </ul>
-          </div>
-        </div>
-
-      </div><!-- /.about-text -->
-
-      <!-- About Portrait -->
-      <div class="about-portrait" data-animate="fade-left">
-        <!--
-          ═══════════════════════════════════════════════
-          REPLACE THIS DIV WITH YOUR PROFESSIONAL PHOTO:
-          <img src="images/portrait.jpg"
-               alt="Aric — Industrial & Production Engineering Student"
-               class="portrait-img" />
-          ═══════════════════════════════════════════════
-        -->
-        <div class="img-placeholder img-placeholder--portrait" role="img" aria-label="Portrait image placeholder">
-          <i class="fa-solid fa-user placeholder-icon" aria-hidden="true"></i>
-          <span class="placeholder-label">[ INSERT IMAGE HERE: 600 × 750 ]</span>
-          <span class="placeholder-size">Professional Portrait Photo</span>
-        </div>
-        <!-- Floating quote card -->
-        <div class="quote-card" aria-hidden="true">
-          <p class="quote-text">"Engineering with purpose — where precision meets sustainability."</p>
-          <span class="quote-attr">— Aric</span>
-        </div>
+    <div class="footer-bottom">
+      <div class="footer-logo">
+        <div class="logo-box">A</div>
+        <span class="logo-name">Aric</span>
       </div>
-
+      <p class="footer-copy">© 2026 Aric. All rights reserved. · Industrial &amp; Production Engineering, AUST</p>
+      <div class="footer-links">
+        <a href="/cdn-cgi/l/email-protection#aecfdcc7cdeecbc3cfc7c280cdc1c3">Email</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+      </div>
     </div>
-  </section>
+  </div>
+</footer>
 
 
-  <!-- ============================================================
-       FOOTER / CONTACT
-  ============================================================ -->
-  <footer class="site-footer" id="contact">
-    <div class="container footer-inner">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Sticky header shadow
+  const hdr = document.getElementById('header');
+  window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 20));
 
-      <!-- Top: CTA -->
-      <div class="footer-cta" data-animate="fade-up">
-        <p class="footer-eyebrow">Let's Connect</p>
-        <h2 class="footer-headline">
-          Ready to collaborate or<br /><em>discuss graduate opportunities?</em>
-        </h2>
-        <p class="footer-sub">
-          I am open to research collaborations, academic discussions,
-          and graduate program inquiries. Let's build something meaningful together.
-        </p>
-        <div class="footer-links-row">
-          <a href="mailto:your.email@example.com" class="footer-contact-btn">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            Email Me
-          </a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="footer-contact-btn">
-            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
-            LinkedIn
-          </a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="footer-contact-btn">
-            <i class="fa-brands fa-github" aria-hidden="true"></i>
-            GitHub
-          </a>
-        </div>
-      </div>
+  // Mobile menu toggle
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileNav').classList.toggle('open')
+  );
+  function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
 
-      <!-- Bottom bar -->
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Aric. All rights reserved.</p>
-        <p class="footer-stack">Built with HTML &amp; CSS — Hosted on GitHub Pages</p>
-      </div>
-
-    </div>
-  </footer>
-
-
-  <!-- ============================================================
-       JAVASCRIPT — Minimal, no dependencies
-  ============================================================ -->
-  <script>
-    /* ── 1. Sticky header shadow on scroll ─────────────────── */
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-
-    /* ── 2. Mobile nav toggle ───────────────────────────────── */
-    const toggleBtn = document.getElementById('navToggle');
-    const nav       = document.getElementById('mainNav');
-    toggleBtn.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('is-open');
-      toggleBtn.setAttribute('aria-expanded', isOpen);
+  // Scroll-triggered fade-up on cards
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
     });
-    /* Close nav when a link is clicked (mobile) */
-    nav.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
+  }, { threshold: 0.1 });
 
-    /* ── 3. Active nav link on scroll ───────────────────────── */
-    const sections = document.querySelectorAll('section[id], footer[id]');
-    const navLinks  = document.querySelectorAll('.nav-link');
-    const observer  = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => observer.observe(s));
+  document.querySelectorAll('.card, .honors-box, .stat-item, .grant-badge').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    obs.observe(el);
+  });
 
-    /* ── 4. Scroll-reveal animations ────────────────────────── */
-    const animEls = document.querySelectorAll('[data-animate]');
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || 0;
-          setTimeout(() => {
-            entry.target.classList.add('is-visible');
-          }, parseInt(delay));
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    animEls.forEach(el => revealObs.observe(el));
-  </script>
+  // Projects Modal
+  function openModal() {
+    const modal = document.getElementById('projectsModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // scroll modal to top each time
+    modal.scrollTop = 0;
+  }
+  function closeModal() {
+    document.getElementById('projectsModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    // close if clicking the dark backdrop (not the modal box itself)
+    if (!document.getElementById('modalBox').contains(e.target)) {
+      closeModal();
+    }
+  }
+  // Research Modal
+  function openResearchModal() {
+    const modal = document.getElementById('researchModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+  }
+  function closeResearchModal() {
+    document.getElementById('researchModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleResearchOverlayClick(e) {
+    if (!document.getElementById('researchModalBox').contains(e.target)) {
+      closeResearchModal();
+    }
+  }
 
+
+  // Experience Detail Modals
+  function openExpModal(id) {
+    const modal = document.getElementById('expModal-' + id);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+  }
+  function closeExpModal(id) {
+    document.getElementById('expModal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleExpOverlay(e, id) {
+    if (!document.getElementById('expModalBox-' + id).contains(e.target)) {
+      closeExpModal(id);
+    }
+  }
+
+  // Close ALL modals with Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeResearchModal();
+      ['exp1','exp2','exp3','eca1','eca2'].forEach(id => closeExpModal(id));
+    }
+  });
+</script>
 </body>
 </html>
