@@ -441,6 +441,31 @@
       color:var(--slate); font-size:.875rem; line-height:1.75;
     }
 
+    /* CV Modal */
+    .cv-modal-overlay {
+      display:none; position:fixed; inset:0; z-index:300;
+      background:rgba(10,18,35,0.85); backdrop-filter:blur(8px);
+      align-items:center; justify-content:center; padding:1.5rem;
+    }
+    .cv-modal-overlay.open { display:flex; }
+    .cv-modal-box {
+      background:var(--navy); width:100%; max-width:860px;
+      height:90vh; display:flex; flex-direction:column;
+      animation: fadeUp 0.35s ease both;
+    }
+    .cv-modal-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 1.5rem;
+      border-bottom:1px solid rgba(255,255,255,0.08); flex-shrink:0;
+    }
+    .cv-modal-title {
+      font-family:'DM Serif Display',serif; color:#fff; font-size:1.1rem;
+    }
+    .cv-modal-actions { display:flex; align-items:center; gap:.75rem; }
+    .cv-modal-box iframe {
+      flex:1; width:100%; border:none;
+    }
+
     /* ── MODAL ── */
     .modal-overlay {
       display:none; position:fixed; inset:0; z-index:200;
@@ -556,10 +581,10 @@
           sustainable engineering solutions.
         </p>
         <div class="hero-btns fade-up d3">
-          <a href="#" class="btn-teal">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download Full CV (PDF)
-          </a>
+          <button onclick="openCVModal()" class="btn-teal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            See CV
+          </button>
           <a href="#portfolio" class="btn-outline">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             View Technical Projects
@@ -574,6 +599,24 @@
     </div>
   </div>
 </section>
+
+
+<!-- CV MODAL -->
+<div class="cv-modal-overlay" id="cvModal" onclick="handleCVOverlay(event)">
+  <div class="cv-modal-box" id="cvModalBox">
+    <div class="cv-modal-header">
+      <div class="cv-modal-title">Sharif Ahsan — Curriculum Vitae</div>
+      <div class="cv-modal-actions">
+        <a href="Resume_of_MD SHARIF AHSAN.pdf" download class="btn-teal" style="padding:.5rem 1rem;font-size:.78rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <button onclick="closeCVModal()" class="modal-close" style="position:static;">✕</button>
+      </div>
+    </div>
+    <iframe id="cvFrame" src="" type="application/pdf"></iframe>
+  </div>
+</div>
 
 
 <!-- STATS BAR -->
@@ -1392,6 +1435,23 @@
 
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // CV Modal
+  function openCVModal() {
+    document.getElementById('cvFrame').src = 'Resume_of_MD SHARIF AHSAN.pdf';
+    document.getElementById('cvModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCVModal() {
+    document.getElementById('cvModal').classList.remove('open');
+    document.getElementById('cvFrame').src = '';
+    document.body.style.overflow = '';
+  }
+  function handleCVOverlay(e) {
+    if (!document.getElementById('cvModalBox').contains(e.target)) {
+      closeCVModal();
+    }
+  }
+
   // Sticky header shadow
   const hdr = document.getElementById('header');
   window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 20));
@@ -1477,6 +1537,7 @@
     if (e.key === 'Escape') {
       closeModal();
       closeResearchModal();
+      closeCVModal();
       ['exp1','exp2','exp3','eca1','eca2'].forEach(id => closeExpModal(id));
     }
   });
