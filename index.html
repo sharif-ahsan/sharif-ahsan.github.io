@@ -441,6 +441,55 @@
       color:var(--slate); font-size:.875rem; line-height:1.75;
     }
 
+    /* Contact Form Modal */
+    .contact-modal-overlay {
+      display:none; position:fixed; inset:0; z-index:300;
+      background:rgba(10,18,35,0.82); backdrop-filter:blur(8px);
+      align-items:center; justify-content:center; padding:1.5rem;
+    }
+    .contact-modal-overlay.open { display:flex; }
+    .contact-modal-box {
+      background:#fff; width:100%; max-width:520px;
+      animation: fadeUp 0.35s ease both;
+    }
+    .contact-modal-header {
+      background:var(--navy); padding:1.5rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .contact-modal-title { font-family:'DM Serif Display',serif; color:#fff; font-size:1.2rem; }
+    .contact-form { padding:2rem; }
+    .form-field { margin-bottom:1.25rem; }
+    .form-label {
+      display:block; font-size:.75rem; font-weight:700;
+      color:var(--navy); letter-spacing:.06em; text-transform:uppercase;
+      margin-bottom:.45rem;
+    }
+    .form-input {
+      width:100%; padding:.7rem 1rem;
+      border:1.5px solid var(--border); background:var(--pearl);
+      font-family:'DM Sans',sans-serif; font-size:.9rem; color:var(--navy);
+      outline:none; transition:border-color .2s;
+    }
+    .form-input:focus { border-color:var(--teal); background:#fff; }
+    textarea.form-input { resize:vertical; min-height:120px; }
+    .form-submit {
+      width:100%; padding:.8rem;
+      background:var(--teal); color:#fff; border:none;
+      font-family:'DM Sans',sans-serif; font-weight:700; font-size:.9rem;
+      letter-spacing:.04em; cursor:pointer;
+      transition:background .2s; display:flex; align-items:center;
+      justify-content:center; gap:8px;
+    }
+    .form-submit:hover { background:#0d6561; }
+    .form-submit:disabled { background:var(--slate-light); cursor:not-allowed; }
+    .form-success {
+      display:none; text-align:center; padding:2.5rem 2rem;
+    }
+    .form-success.show { display:block; }
+    .form-success-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .form-success-title { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--navy); margin-bottom:.5rem; }
+    .form-success-sub { color:var(--slate); font-size:.9rem; line-height:1.7; }
+
     /* CV Modal */
     .cv-modal-overlay {
       display:none; position:fixed; inset:0; z-index:300;
@@ -519,6 +568,7 @@
       .research-grid { grid-template-columns:1fr; }
       .eca-grid   { grid-template-columns:1fr; }
       .projects-grid { grid-template-columns:1fr; }
+      .cert-grid  { grid-template-columns:1fr !important; }
       .footer-bottom { flex-direction:column; text-align:center; }
       .footer-links  { justify-content:center; }
     }
@@ -575,15 +625,25 @@
         <h1 class="hero-h1 fade-up d1">
           SHARIF AHSAN
         </h1>
-        <p class="hero-sub fade-up d2">
+        <div class="fade-up d2" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:1.25rem;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.35);padding:.6rem 1.1rem;flex-wrap:wrap;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <span style="color:white;font-size:.9rem;font-weight:700;letter-spacing:0.02em;">B.Sc. in Industrial &amp; Production Engineering</span>
+          <span style="color:rgba(255,255,255,0.3);font-size:.85rem;">|</span>
+          <span style="color:var(--teal-light);font-size:.88rem;font-weight:600;">Ahsanullah University of Science and Technology</span>
+        </div>
+        <p class="hero-sub fade-up d3">
           3rd Year B.Sc. Student — specializing in Advanced CAD,
           Materials Research, and Manufacturing Processes. Passionate about
           sustainable engineering solutions.
         </p>
-        <div class="hero-btns fade-up d3">
+        <div class="hero-btns fade-up d4">
           <button onclick="openCVModal()" class="btn-teal">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             See CV
+          </button>
+          <button onclick="openContactModal()" class="btn-teal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Send Me a Message
           </button>
           <a href="#portfolio" class="btn-outline">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -593,7 +653,7 @@
       </div>
       <div class="headshot-wrap fade-up d4">
         <div class="headshot-frame"></div>
-        <img src="images/myimage.jpeg" class="headshot-img" style="object-fit:cover; object-position:top;">
+        <div class="placeholder headshot-img">[ INSERT HEADSHOT ]</div>
 
       </div>
     </div>
@@ -607,7 +667,7 @@
     <div class="cv-modal-header">
       <div class="cv-modal-title">Sharif Ahsan — Curriculum Vitae</div>
       <div class="cv-modal-actions">
-        <a href="Resume_of_MD SHARIF AHSAN.pdf" download class="btn-teal" style="padding:.5rem 1rem;font-size:.78rem;">
+        <a href="my-cv.pdf" download class="btn-teal" style="padding:.5rem 1rem;font-size:.78rem;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download
         </a>
@@ -688,9 +748,9 @@
     </div>
 
     <div style="margin-bottom:3.5rem;">
-      <button onclick="openResearchModal()" class="btn-teal">
+      <button onclick="openAllResearchModal()" class="btn-teal">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        View Full Research Details
+        View All Research
       </button>
     </div>
 
@@ -727,7 +787,58 @@
 </section>
 
 
-<!-- RESEARCH MODAL -->
+<!-- ALL RESEARCH INDEX MODAL -->
+<div class="modal-overlay" id="allResearchModal" onclick="handleAllResearchOverlay(event)">
+  <div class="modal-box" id="allResearchModalBox">
+
+    <div class="modal-header">
+      <h2 class="modal-title">Research Projects</h2>
+      <button class="modal-close" onclick="closeAllResearchModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-section-label">All Research — Sharif Ahsan</div>
+
+      <!-- Research Card 1 -->
+      <div class="card" style="padding:1.75rem 2rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+          <div class="placeholder" style="width:160px;height:110px;flex-shrink:0;font-size:.7rem;">[ INSERT IMAGE ]</div>
+          <div style="flex:1;min-width:200px;">
+            <div class="grant-badge" style="margin-bottom:.7rem;">Funded · 2.5 Lakh BDT Grant · Ongoing</div>
+            <div style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);margin-bottom:.5rem;line-height:1.3;">
+              Biodegradable Composite Materials for Bio-Implant Applications
+            </div>
+            <p style="color:var(--slate);font-size:.86rem;line-height:1.7;margin-bottom:1rem;">
+              Developing next-generation biodegradable polymer composites for bio-implants — focusing on material strength, degradation timelines, and manufacturing viability at scale.
+            </p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+              <div class="tags-row">
+                <span class="tag">Composite Materials</span>
+                <span class="tag">Bio-implants</span>
+                <span class="tag">Co-Investigator</span>
+              </div>
+              <button onclick="closeAllResearchModal(); setTimeout(openResearchModal, 200);" class="see-details-btn">
+                View Full Research Details
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder for future research -->
+      <div style="border:2px dashed var(--border);padding:2rem;text-align:center;background:var(--pearl);">
+        <div style="font-size:1.5rem;margin-bottom:.5rem;">🔬</div>
+        <div style="font-weight:600;color:var(--slate);font-size:.88rem;">More research coming soon</div>
+        <div style="color:var(--slate-light);font-size:.78rem;margin-top:.3rem;">New projects will appear here as they begin</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- RESEARCH DETAILS MODAL -->
 <div class="modal-overlay" id="researchModal" onclick="handleResearchOverlayClick(event)">
   <div class="modal-box" id="researchModalBox">
 
@@ -1072,7 +1183,123 @@
 </div>
 
 
-<!-- SECTION 3: LEADERSHIP -->
+<!-- SECTION: CERTIFICATIONS -->
+<section id="certifications" class="section-wrap bg-white">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Certifications</span></div>
+      <h2 class="section-title">Professional Certifications</h2>
+      <p class="section-subtitle">Industry-recognized credentials validating technical expertise and engineering competency.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;" class="cert-grid">
+
+      <!-- CSWA -->
+      <div class="card" style="overflow:hidden;">
+        <div style="background:var(--navy);padding:1.5rem;display:flex;align-items:center;justify-content:space-between;">
+          <div style="background:rgba(20,184,166,0.15);border:1px solid rgba(20,184,166,0.3);padding:.3rem .7rem;font-size:.67rem;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;">
+            VERIFIED
+          </div>
+          <div style="width:8px;height:8px;background:var(--teal-light);border-radius:50%;animation:pulse 2s infinite;"></div>
+        </div>
+        <div class="placeholder" style="height:160px;font-size:.75rem;border-radius:0;">[ INSERT CERTIFICATE IMAGE ]</div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:.67rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;">CAD Design</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.3rem;">Certified SolidWorks Associate</div>
+          <div style="font-size:.82rem;color:var(--slate);margin-bottom:.25rem;font-weight:500;">Dassault Systèmes</div>
+          <div style="font-size:.78rem;color:var(--slate-light);margin-bottom:1.25rem;">Issued: Add Date · No Expiry</div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+            <span class="tag">3D Modeling</span>
+            <span class="tag">SolidWorks</span>
+            <span class="tag">CAD</span>
+          </div>
+          <a href="#" target="_blank" class="btn-teal" style="width:100%;justify-content:center;font-size:.8rem;padding:.65rem 1rem;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Verify Certificate
+          </a>
+        </div>
+      </div>
+
+      <!-- Placeholder 2 -->
+      <div class="card" style="overflow:hidden;border:2px dashed var(--border);box-shadow:none;background:var(--pearl);display:flex;align-items:center;justify-content:center;min-height:340px;">
+        <div style="text-align:center;padding:2rem;">
+          <div style="font-size:2rem;margin-bottom:.75rem;">🏅</div>
+          <div style="font-weight:600;color:var(--slate);font-size:.88rem;">Next Certification</div>
+          <div style="color:var(--slate-light);font-size:.78rem;margin-top:.35rem;">Coming soon</div>
+        </div>
+      </div>
+
+      <!-- Placeholder 3 -->
+      <div class="card" style="overflow:hidden;border:2px dashed var(--border);box-shadow:none;background:var(--pearl);display:flex;align-items:center;justify-content:center;min-height:340px;">
+        <div style="text-align:center;padding:2rem;">
+          <div style="font-size:2rem;margin-bottom:.75rem;">🏅</div>
+          <div style="font-weight:600;color:var(--slate);font-size:.88rem;">Next Certification</div>
+          <div style="color:var(--slate-light);font-size:.78rem;margin-top:.35rem;">Coming soon</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <button onclick="openCertModal()" class="btn-teal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        View All Certificates
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATES MODAL -->
+<div class="modal-overlay" id="certModal" onclick="handleCertOverlay(event)">
+  <div class="modal-box" id="certModalBox">
+
+    <div class="modal-header">
+      <h2 class="modal-title">All Certificates — Sharif Ahsan</h2>
+      <button class="modal-close" onclick="closeCertModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-section-label">Earned Certifications</div>
+
+      <div class="card" style="padding:1.75rem 2rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+          <div class="placeholder" style="width:140px;height:100px;flex-shrink:0;font-size:.7rem;">[ CERT IMAGE ]</div>
+          <div style="flex:1;min-width:200px;">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;flex-wrap:wrap;">
+              <div class="tag-teal">CAD Design</div>
+              <div style="background:rgba(13,148,136,0.1);color:var(--teal);border:1px solid rgba(15,118,110,.25);padding:.18rem .55rem;font-size:.68rem;font-weight:700;letter-spacing:.07em;">VERIFIED</div>
+            </div>
+            <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.3rem;">Certified SolidWorks Associate (CSWA)</div>
+            <div style="font-size:.82rem;color:var(--slate);font-weight:500;margin-bottom:.2rem;">Dassault Systèmes</div>
+            <div style="font-size:.78rem;color:var(--slate-light);margin-bottom:1rem;">Issued: Add Date · No Expiry</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+              <div class="tags-row">
+                <span class="tag">3D Modeling</span>
+                <span class="tag">SolidWorks</span>
+                <span class="tag">CAD</span>
+              </div>
+              <a href="#" target="_blank" class="see-details-btn">
+                Verify Certificate
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section-label" style="margin-top:1.5rem;">Coming Soon</div>
+      <div style="border:2px dashed var(--border);padding:2rem;text-align:center;background:var(--pearl);">
+        <div style="font-size:1.5rem;margin-bottom:.5rem;">🏅</div>
+        <div style="font-weight:600;color:var(--slate);font-size:.88rem;">More certifications will appear here</div>
+        <div style="color:var(--slate-light);font-size:.78rem;margin-top:.3rem;">Updated as new credentials are earned</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <section id="leadership" class="section-wrap bg-white">
   <div class="container">
     <div class="section-head">
@@ -1391,6 +1618,63 @@
 
 
 <!-- FOOTER / CONTACT -->
+<!-- CONTACT FORM MODAL -->
+<div class="contact-modal-overlay" id="contactModal" onclick="handleContactOverlay(event)">
+  <div class="contact-modal-box" id="contactModalBox">
+
+    <div class="contact-modal-header">
+      <div class="contact-modal-title">Send Me a Message</div>
+      <button class="modal-close" onclick="closeContactModal()">✕</button>
+    </div>
+
+    <!-- Form -->
+    <div id="contactFormWrap">
+      <form class="contact-form" id="contactForm"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST">
+
+        <div class="form-field">
+          <label class="form-label" for="contactName">Your Name</label>
+          <input class="form-input" type="text" id="contactName" name="name"
+                 placeholder="e.g. Dr. John Smith" required />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactEmail">Your Email</label>
+          <input class="form-input" type="email" id="contactEmail" name="email"
+                 placeholder="e.g. john@university.edu" required />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactMsg">Message</label>
+          <textarea class="form-input" id="contactMsg" name="message"
+                    placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="formSubmitBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">✅</div>
+      <div class="form-success-title">Message Sent!</div>
+      <p class="form-success-sub">
+        Thank you for reaching out. I'll get back to you as soon as possible.
+      </p>
+      <button onclick="closeContactModal()" class="btn-teal" style="margin-top:1.5rem;width:100%;justify-content:center;">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
 <footer id="contact">
   <div class="container">
     <div class="footer-cta">
@@ -1402,13 +1686,30 @@
         Whether you're a potential research advisor, admissions committee member,
         or industry collaborator — I'd love to connect.
       </p>
+      <div style="display:inline-flex;align-items:center;gap:0;margin-bottom:1.75rem;">
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:0 1.2rem;height:42px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span id="emailDisplay" style="color:var(--teal-light);font-size:.88rem;font-weight:600;letter-spacing:0.02em;user-select:all;"></span>
+        </div>
+        <button onclick="copyEmail(this)" title="Copy email" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-left:none;color:var(--slate-light);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;" onmouseover="this.style.background='rgba(20,184,166,0.2)';this.style.borderColor='rgba(20,184,166,0.4)';this.style.color='var(--teal-light)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)';this.style.borderLeft='none';this.style.color='var(--slate-light)'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+      </div>
       <div class="footer-btns">
-        <a href="/cdn-cgi/l/email-protection#ceafbca7ad8eaba3afa7a2e0ada1a3" class="btn-teal">
+        <a href="https://mail.google.com/mail/?view=cm&to=mdsharifahsan1971@gmail.com" target="_blank" class="btn-teal">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Send an Email
         </a>
-        <a href="#" class="btn-ghost">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://wa.me/8801870333054" target="_blank" class="btn-ghost" style="padding:.75rem 1.1rem;gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:#25D366;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a href="#" class="btn-ghost" style="padding:.75rem 1.1rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
           LinkedIn
         </a>
         <a href="#" class="btn-ghost">
@@ -1423,7 +1724,7 @@
         <div class="logo-box">S</div>
         <span class="logo-name">SHARIF AHSAN</span>
       </div>
-      <p class="footer-copy">© 2026 Sharif Ahsan. All rights reserved. · Industrial &amp; Production Engineering, AUST</p>
+      <p class="footer-copy">© 2026 Sharif Ahsan. All rights reserved.</p>
       <div class="footer-links">
         <a href="/cdn-cgi/l/email-protection#aecfdcc7cdeecbc3cfc7c280cdc1c3">Email</a>
         <a href="#">LinkedIn</a>
@@ -1434,10 +1735,10 @@
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // CV Modal
   function openCVModal() {
-    document.getElementById('cvFrame').src = 'Resume_of_MD SHARIF AHSAN.pdf';
+    document.getElementById('cvFrame').src = 'my-cv.pdf';
     document.getElementById('cvModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1450,6 +1751,71 @@
     if (!document.getElementById('cvModalBox').contains(e.target)) {
       closeCVModal();
     }
+  }
+
+  // Contact Form Modal
+  function openContactModal() {
+    document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // reset form state
+    document.getElementById('contactFormWrap').style.display = 'block';
+    document.getElementById('formSuccess').classList.remove('show');
+    document.getElementById('contactForm').reset();
+  }
+  function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleContactOverlay(e) {
+    if (!document.getElementById('contactModalBox').contains(e.target)) {
+      closeContactModal();
+    }
+  }
+
+  // Handle form submission via Formspree (AJAX)
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('formSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('contactFormWrap').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+      } else {
+        alert('Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    } catch {
+      alert('Network error. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  });
+
+  // Render email via JS to prevent Cloudflare masking
+  (function() {
+    var u = 'mdsharifahsan1971';
+    var d = 'gmail.com';
+    var el = document.getElementById('emailDisplay');
+    if (el) el.textContent = u + '@' + d;
+  })();
+
+  // Copy email to clipboard
+  function copyEmail(btn) {
+    navigator.clipboard.writeText('mdsharifahsan1971@gmail.com').then(() => {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      btn.style.background = 'rgba(20,184,166,0.2)';
+      btn.style.color = 'var(--teal-light)';
+      setTimeout(() => { btn.innerHTML = original; btn.style.background = 'rgba(255,255,255,0.08)'; }, 2000);
+    });
   }
 
   // Sticky header shadow
@@ -1497,6 +1863,22 @@
       closeModal();
     }
   }
+  // All Research Index Modal
+  function openAllResearchModal() {
+    document.getElementById('allResearchModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('allResearchModal').scrollTop = 0;
+  }
+  function closeAllResearchModal() {
+    document.getElementById('allResearchModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleAllResearchOverlay(e) {
+    if (!document.getElementById('allResearchModalBox').contains(e.target)) {
+      closeAllResearchModal();
+    }
+  }
+
   // Research Modal
   function openResearchModal() {
     const modal = document.getElementById('researchModal');
@@ -1532,12 +1914,31 @@
     }
   }
 
+  // Certificates Modal
+  function openCertModal() {
+    document.getElementById('certModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('certModal').scrollTop = 0;
+  }
+  function closeCertModal() {
+    document.getElementById('certModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleCertOverlay(e) {
+    if (!document.getElementById('certModalBox').contains(e.target)) {
+      closeCertModal();
+    }
+  }
+
   // Close ALL modals with Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
       closeResearchModal();
+      closeAllResearchModal();
       closeCVModal();
+      closeContactModal();
+      closeCertModal();
       ['exp1','exp2','exp3','eca1','eca2'].forEach(id => closeExpModal(id));
     }
   });
