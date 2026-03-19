@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sharif Ahsan — Industrial & Production Engineering</title>
+  <title>Sharif Ahsan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
@@ -482,6 +482,12 @@
     }
     .form-submit:hover { background:#0d6561; }
     .form-submit:disabled { background:var(--slate-light); cursor:not-allowed; }
+    .form-error {
+      display:none; color:#ef4444; font-size:.75rem;
+      font-weight:600; margin-top:.35rem; letter-spacing:.02em;
+    }
+    .form-error.show { display:block; }
+    .form-input.invalid { border-color:#ef4444; background:#fff5f5; }
     .form-success {
       display:none; text-align:center; padding:2.5rem 2rem;
     }
@@ -489,6 +495,68 @@
     .form-success-icon { font-size:2.5rem; margin-bottom:1rem; }
     .form-success-title { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--navy); margin-bottom:.5rem; }
     .form-success-sub { color:var(--slate); font-size:.9rem; line-height:1.7; }
+
+    /* Floating Search */
+    .search-fab {
+      position: fixed; top: 84px; right: 1.5rem; z-index: 90;
+      width: 42px; height: 42px;
+      background: var(--teal); border: 1px solid rgba(20,184,166,0.4);
+      color: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(15,118,110,0.4);
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+    }
+    .search-fab.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .search-fab:hover { background: #0d6561; }
+
+    .search-bar {
+      position: fixed; top: 84px; right: 1.5rem; z-index: 90;
+      display: flex; align-items: center;
+      background: var(--teal); border: 1px solid rgba(20,184,166,0.5);
+      box-shadow: 0 4px 24px rgba(15,118,110,0.4);
+      opacity: 0; pointer-events: none;
+      transform: translateX(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+      width: 42px;
+    }
+    .search-bar.open {
+      opacity: 1; pointer-events: all; transform: translateX(0); width: 280px;
+      transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease;
+    }
+    .search-bar input {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: white; font-family: 'DM Sans', sans-serif;
+      font-size: .875rem; padding: .7rem 1rem;
+    }
+    .search-bar input::placeholder { color: rgba(255,255,255,0.6); }
+    .search-close-btn {
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      cursor: pointer; padding: .7rem .75rem; display: flex;
+      align-items: center; transition: color .2s;
+    }
+    .search-close-btn:hover { color: white; }
+
+    .search-results {
+      position: fixed; top: 132px; right: 1.5rem; z-index: 90;
+      width: 280px; background: white;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      max-height: 320px; overflow-y: auto;
+      display: none;
+    }
+    .search-results.show { display: block; }
+    .search-result-item {
+      padding: .75rem 1rem; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background .15s;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--pearl); }
+    .search-result-title { font-weight: 700; font-size: .82rem; color: var(--navy); }
+    .search-result-preview { font-size: .75rem; color: var(--slate); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-no-result { padding: 1rem; text-align: center; color: var(--slate-light); font-size: .82rem; }
 
     /* CV Modal */
     .cv-modal-overlay {
@@ -659,6 +727,21 @@
     </div>
   </div>
 </section>
+
+
+<!-- FLOATING SEARCH -->
+<button class="search-fab" id="searchFab" onclick="openSearch()" title="Search">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</button>
+
+<div class="search-bar" id="searchBar">
+  <input type="text" id="searchInput" placeholder="Search..." oninput="doSearch()" />
+  <button class="search-close-btn" onclick="closeSearch()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
+
+<div class="search-results" id="searchResults"></div>
 
 
 <!-- CV MODAL -->
@@ -1634,21 +1717,23 @@
             method="POST">
 
         <div class="form-field">
-          <label class="form-label" for="contactName">Your Name</label>
+          <label class="form-label" for="contactName">Your Name <span style="color:#ef4444;">*</span></label>
           <input class="form-input" type="text" id="contactName" name="name"
-                 placeholder="e.g. Dr. John Smith" required />
+                 placeholder="e.g. Dr. John Smith" />
+          <div class="form-error" id="nameError">⚠ Name is required.</div>
         </div>
 
         <div class="form-field">
-          <label class="form-label" for="contactEmail">Your Email</label>
+          <label class="form-label" for="contactEmail">Your Email <span style="color:#ef4444;">*</span></label>
           <input class="form-input" type="email" id="contactEmail" name="email"
-                 placeholder="e.g. john@university.edu" required />
+                 placeholder="e.g. john@university.edu" />
+          <div class="form-error" id="emailError">⚠ A valid email address is required.</div>
         </div>
 
         <div class="form-field">
           <label class="form-label" for="contactMsg">Message</label>
           <textarea class="form-input" id="contactMsg" name="message"
-                    placeholder="Write your message here..." required></textarea>
+                    placeholder="Write your message here..."></textarea>
         </div>
 
         <button type="submit" class="form-submit" id="formSubmitBtn">
@@ -1775,6 +1860,31 @@
   // Handle form submission via Formspree (AJAX)
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    // Validate name and email
+    const name  = document.getElementById('contactName');
+    const email = document.getElementById('contactEmail');
+    const nameErr  = document.getElementById('nameError');
+    const emailErr = document.getElementById('emailError');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let valid = true;
+
+    // Reset errors
+    name.classList.remove('invalid');  nameErr.classList.remove('show');
+    email.classList.remove('invalid'); emailErr.classList.remove('show');
+
+    if (!name.value.trim()) {
+      name.classList.add('invalid'); nameErr.classList.add('show');
+      valid = false;
+    }
+    if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+      email.classList.add('invalid'); emailErr.classList.add('show');
+      valid = false;
+    }
+
+    if (!valid) return;
+
     const btn = document.getElementById('formSubmitBtn');
     btn.disabled = true;
     btn.textContent = 'Sending...';
@@ -1790,13 +1900,23 @@
       } else {
         alert('Something went wrong. Please try again.');
         btn.disabled = false;
-        btn.textContent = 'Send Message';
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
       }
     } catch {
       alert('Network error. Please try again.');
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
     }
+  });
+
+  // Clear error on input
+  document.getElementById('contactName').addEventListener('input', function() {
+    this.classList.remove('invalid');
+    document.getElementById('nameError').classList.remove('show');
+  });
+  document.getElementById('contactEmail').addEventListener('input', function() {
+    this.classList.remove('invalid');
+    document.getElementById('emailError').classList.remove('show');
   });
 
   // Render email via JS to prevent Cloudflare masking
@@ -1817,6 +1937,80 @@
       setTimeout(() => { btn.innerHTML = original; btn.style.background = 'rgba(255,255,255,0.08)'; }, 2000);
     });
   }
+
+  // Floating Search
+  const searchFab = document.getElementById('searchFab');
+  window.addEventListener('scroll', () => {
+    searchFab.classList.toggle('visible', window.scrollY > 80);
+  });
+
+  function openSearch() {
+    searchFab.classList.remove('visible');
+    document.getElementById('searchBar').classList.add('open');
+    setTimeout(() => document.getElementById('searchInput').focus(), 300);
+  }
+
+  function closeSearch() {
+    document.getElementById('searchBar').classList.remove('open');
+    document.getElementById('searchResults').classList.remove('show');
+    document.getElementById('searchInput').value = '';
+    setTimeout(() => {
+      if (window.scrollY > 80) searchFab.classList.add('visible');
+    }, 300);
+  }
+
+  // Searchable content index
+  const searchIndex = [
+    { title: 'Research — Biodegradable Composites', preview: 'Bio-implants, composite materials, 2.5 Lakh BDT grant, co-investigator', anchor: '#research' },
+    { title: 'Academic Honors & Scholarships', preview: 'Full-free tuition waiver, top 5% of batch, CGPA 3.82', anchor: '#research' },
+    { title: 'Assistant Instructor', preview: 'NAS Tech Engineering, CAD instruction, mentorship, Dec 2025', anchor: '#experience' },
+    { title: 'Trainee Designer (SolidWorks)', preview: 'NAS Tech Engineering, 3D modeling, mold factory, GD&T', anchor: '#experience' },
+    { title: 'PowerPoint Designer', preview: 'Bornomala Academy, Ed-Tech, instructional design, 2022-2024', anchor: '#experience' },
+    { title: 'CSWA Certification', preview: 'Certified SolidWorks Associate, Dassault Systèmes, CAD', anchor: '#certifications' },
+    { title: 'AUST IEOM Student Chapter', preview: 'Jr. Asst. Director, communication, membership, 2025', anchor: '#leadership' },
+    { title: 'Mindspark 2024', preview: 'Top 10 finalist, business case competition, Bangladesh', anchor: '#leadership' },
+    { title: 'Complex Assembly Design', preview: 'SolidWorks, FEA, stress simulation, 3D assembly', anchor: '#portfolio' },
+    { title: 'Industrial Tooling Design', preview: 'Mold factory, GD&T, production drawing', anchor: '#portfolio' },
+    { title: 'Computational Logic (Python)', preview: 'Python, numerical methods, automation, data analysis', anchor: '#portfolio' },
+    { title: 'Contact & Connect', preview: 'Send message, email, WhatsApp, LinkedIn, GitHub', anchor: '#contact' },
+  ];
+
+  function doSearch() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const box = document.getElementById('searchResults');
+    if (!q) { box.classList.remove('show'); return; }
+
+    const matches = searchIndex.filter(item =>
+      item.title.toLowerCase().includes(q) || item.preview.toLowerCase().includes(q)
+    );
+
+    if (matches.length === 0) {
+      box.innerHTML = '<div class="search-no-result">No results found for "<strong>' + q + '</strong>"</div>';
+    } else {
+      box.innerHTML = matches.map(m => `
+        <div class="search-result-item" onclick="goToSection('${m.anchor}')">
+          <div class="search-result-title">${m.title}</div>
+          <div class="search-result-preview">${m.preview}</div>
+        </div>
+      `).join('');
+    }
+    box.classList.add('show');
+  }
+
+  function goToSection(anchor) {
+    closeSearch();
+    setTimeout(() => {
+      const el = document.querySelector(anchor);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  }
+
+  // Close search on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeSearch();
+    }
+  });
 
   // Sticky header shadow
   const hdr = document.getElementById('header');
