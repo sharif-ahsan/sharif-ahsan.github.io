@@ -1267,6 +1267,253 @@
 </div>
 
 
+<!-- SECTION 4: PORTFOLIO -->
+<section id="portfolio" class="section-wrap bg-pearl">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label"><span>Technical Portfolio</span></div>
+      <h2 class="section-title">Precision Design &amp; Manufacturing</h2>
+      <p class="section-subtitle">A selection of design, simulation, and programming projects demonstrating technical depth and practical problem-solving.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT YOUTUBE 16:9 ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">SolidWorks</div>
+          <div class="proj-title">Complex Assembly Design</div>
+          <p class="proj-desc">End-to-end 3D modeling of multi-part mechanical assemblies with contact set definitions, motion studies, and FEA stress simulations.</p>
+          <div class="tags-row">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">FEA</span>
+            <span class="tag">Assembly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">Mold Factory Experience</div>
+          <div class="proj-title">Industrial Tooling Design</div>
+          <p class="proj-desc">Real-world part design for a local mold manufacturing facility — from client spec to final production drawing with GD&amp;T callouts.</p>
+          <div class="tags-row">
+            <span class="tag">Tooling</span>
+            <span class="tag">GD&amp;T</span>
+            <span class="tag">Production</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
+        <div class="proj-body">
+          <div class="proj-sub">Python Engineering</div>
+          <div class="proj-title">Computational Logic</div>
+          <p class="proj-desc">Applying Python to engineering problems — numerical methods, data analysis pipelines, and process optimization algorithms.</p>
+          <div class="tags-row">
+            <span class="tag">Python</span>
+            <span class="tag">Numerical Methods</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="proj-cta">
+      <button onclick="openModal()" class="btn-teal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        See All Projects &amp; CAD Videos
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ALL PROJECTS MODAL -->
+<div class="modal-overlay" id="projectsModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+
+    <div class="modal-header">
+      <h2 class="modal-title">All Projects &amp; CAD Videos</h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- CAD & SolidWorks -->
+      <div class="modal-section-label">CAD &amp; SolidWorks Design</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks</div>
+            <div class="proj-title">Complex Assembly Design</div>
+            <p class="proj-desc">Multi-part mechanical assemblies with motion studies and FEA stress simulations.</p>
+            <div class="tags-row"><span class="tag">SolidWorks</span><span class="tag">FEA</span><span class="tag">Assembly</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks</div>
+            <div class="proj-title">Parametric Part Modeling</div>
+            <p class="proj-desc">Feature-based parametric modeling of precision mechanical parts with design tables.</p>
+            <div class="tags-row"><span class="tag">Parametric</span><span class="tag">Part Design</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">SolidWorks Simulation</div>
+            <div class="proj-title">Stress &amp; Thermal Analysis</div>
+            <p class="proj-desc">Finite element analysis on structural components under real-world loading conditions.</p>
+            <div class="tags-row"><span class="tag">FEA</span><span class="tag">Simulation</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Industrial Design -->
+      <div class="modal-section-label" style="margin-top:1.5rem;">Industrial &amp; Tooling Design</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Mold Factory</div>
+            <div class="proj-title">Industrial Tooling Design</div>
+            <p class="proj-desc">Real-world mold factory part design from client spec to production drawing with GD&amp;T.</p>
+            <div class="tags-row"><span class="tag">Tooling</span><span class="tag">GD&amp;T</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Manufacturing</div>
+            <div class="proj-title">Fixture &amp; Jig Design</div>
+            <p class="proj-desc">Designed production fixtures and jigs to improve repeatability and reduce setup time.</p>
+            <div class="tags-row"><span class="tag">Fixtures</span><span class="tag">Production</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Bio-Materials Research</div>
+            <div class="proj-title">Composite Material Samples</div>
+            <p class="proj-desc">Physical prototypes and test specimens from the university-funded bio-implant research project.</p>
+            <div class="tags-row"><span class="tag">Research</span><span class="tag">Materials</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Programming -->
+      <div class="modal-section-label" style="margin-top:1.5rem;">Computational &amp; Programming</div>
+      <div class="modal-grid">
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Python</div>
+            <div class="proj-title">Computational Logic</div>
+            <p class="proj-desc">Numerical methods and process optimization algorithms applied to engineering problems.</p>
+            <div class="tags-row"><span class="tag">Python</span><span class="tag">Algorithms</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card">
+          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
+          <div class="proj-body">
+            <div class="proj-sub">Data Analysis</div>
+            <div class="proj-title">Engineering Data Pipelines</div>
+            <p class="proj-desc">Processing and visualizing experimental data from materials testing using Python and Pandas.</p>
+            <div class="tags-row"><span class="tag">Pandas</span><span class="tag">Data Viz</span></div>
+          </div>
+        </div>
+
+        <div class="card proj-card" style="border:2px dashed var(--border);box-shadow:none;background:var(--pearl);display:flex;align-items:center;justify-content:center;min-height:200px;">
+          <div style="text-align:center;padding:1.5rem;">
+            <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--slate);">More projects coming soon</div>
+            <div style="font-size:.75rem;color:var(--slate-light);margin-top:.3rem;">Updated each semester</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div><!-- /modal-overlay -->
+
+
+<!-- FOOTER / CONTACT -->
+<!-- CONTACT FORM MODAL -->
+<div class="contact-modal-overlay" id="contactModal" onclick="handleContactOverlay(event)">
+  <div class="contact-modal-box" id="contactModalBox">
+
+    <div class="contact-modal-header">
+      <div class="contact-modal-title">Send Me a Message</div>
+      <button class="modal-close" onclick="closeContactModal()">✕</button>
+    </div>
+
+    <!-- Form -->
+    <div id="contactFormWrap">
+      <form class="contact-form" id="contactForm"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST">
+
+        <div class="form-field">
+          <label class="form-label" for="contactName">Your Name <span style="color:#ef4444;">*</span></label>
+          <input class="form-input" type="text" id="contactName" name="name"
+                 placeholder="e.g. Dr. John Smith" />
+          <div class="form-error" id="nameError">⚠ Name is required.</div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactEmail">Your Email <span style="color:#ef4444;">*</span></label>
+          <input class="form-input" type="email" id="contactEmail" name="email"
+                 placeholder="e.g. john@university.edu" />
+          <div class="form-error" id="emailError">⚠ A valid email address is required.</div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactMsg">Message</label>
+          <textarea class="form-input" id="contactMsg" name="message"
+                    placeholder="Write your message here..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="formSubmitBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">✅</div>
+      <div class="form-success-title">Message Sent!</div>
+      <p class="form-success-sub">
+        Thank you for reaching out. I'll get back to you as soon as possible.
+      </p>
+      <button onclick="closeContactModal()" class="btn-teal" style="margin-top:1.5rem;width:100%;justify-content:center;">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
 <!-- SECTION: CERTIFICATIONS -->
 <section id="certifications" class="section-wrap bg-white">
   <div class="container">
@@ -1513,252 +1760,6 @@
   </div>
 </div>
 
-
-<!-- SECTION 4: PORTFOLIO -->
-<section id="portfolio" class="section-wrap bg-pearl">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label"><span>Technical Portfolio</span></div>
-      <h2 class="section-title">Precision Design &amp; Manufacturing</h2>
-      <p class="section-subtitle">A selection of design, simulation, and programming projects demonstrating technical depth and practical problem-solving.</p>
-    </div>
-
-    <div class="projects-grid">
-
-      <div class="card proj-card">
-        <div class="placeholder" style="height:210px;">[ INSERT YOUTUBE 16:9 ]</div>
-        <div class="proj-body">
-          <div class="proj-sub">SolidWorks</div>
-          <div class="proj-title">Complex Assembly Design</div>
-          <p class="proj-desc">End-to-end 3D modeling of multi-part mechanical assemblies with contact set definitions, motion studies, and FEA stress simulations.</p>
-          <div class="tags-row">
-            <span class="tag">SolidWorks</span>
-            <span class="tag">FEA</span>
-            <span class="tag">Assembly</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card proj-card">
-        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
-        <div class="proj-body">
-          <div class="proj-sub">Mold Factory Experience</div>
-          <div class="proj-title">Industrial Tooling Design</div>
-          <p class="proj-desc">Real-world part design for a local mold manufacturing facility — from client spec to final production drawing with GD&amp;T callouts.</p>
-          <div class="tags-row">
-            <span class="tag">Tooling</span>
-            <span class="tag">GD&amp;T</span>
-            <span class="tag">Production</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card proj-card">
-        <div class="placeholder" style="height:210px;">[ INSERT PROJECT IMAGE ]</div>
-        <div class="proj-body">
-          <div class="proj-sub">Python Engineering</div>
-          <div class="proj-title">Computational Logic</div>
-          <p class="proj-desc">Applying Python to engineering problems — numerical methods, data analysis pipelines, and process optimization algorithms.</p>
-          <div class="tags-row">
-            <span class="tag">Python</span>
-            <span class="tag">Numerical Methods</span>
-            <span class="tag">Automation</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="proj-cta">
-      <button onclick="openModal()" class="btn-teal">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        See All Projects &amp; CAD Videos
-      </button>
-    </div>
-  </div>
-</section>
-
-
-<!-- ALL PROJECTS MODAL -->
-<div class="modal-overlay" id="projectsModal" onclick="handleOverlayClick(event)">
-  <div class="modal-box" id="modalBox">
-
-    <div class="modal-header">
-      <h2 class="modal-title">All Projects &amp; CAD Videos</h2>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
-    </div>
-
-    <div class="modal-body">
-
-      <!-- CAD & SolidWorks -->
-      <div class="modal-section-label">CAD &amp; SolidWorks Design</div>
-      <div class="modal-grid">
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">SolidWorks</div>
-            <div class="proj-title">Complex Assembly Design</div>
-            <p class="proj-desc">Multi-part mechanical assemblies with motion studies and FEA stress simulations.</p>
-            <div class="tags-row"><span class="tag">SolidWorks</span><span class="tag">FEA</span><span class="tag">Assembly</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">SolidWorks</div>
-            <div class="proj-title">Parametric Part Modeling</div>
-            <p class="proj-desc">Feature-based parametric modeling of precision mechanical parts with design tables.</p>
-            <div class="tags-row"><span class="tag">Parametric</span><span class="tag">Part Design</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT YOUTUBE 16:9 ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">SolidWorks Simulation</div>
-            <div class="proj-title">Stress &amp; Thermal Analysis</div>
-            <p class="proj-desc">Finite element analysis on structural components under real-world loading conditions.</p>
-            <div class="tags-row"><span class="tag">FEA</span><span class="tag">Simulation</span></div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Industrial Design -->
-      <div class="modal-section-label" style="margin-top:1.5rem;">Industrial &amp; Tooling Design</div>
-      <div class="modal-grid">
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">Mold Factory</div>
-            <div class="proj-title">Industrial Tooling Design</div>
-            <p class="proj-desc">Real-world mold factory part design from client spec to production drawing with GD&amp;T.</p>
-            <div class="tags-row"><span class="tag">Tooling</span><span class="tag">GD&amp;T</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">Manufacturing</div>
-            <div class="proj-title">Fixture &amp; Jig Design</div>
-            <p class="proj-desc">Designed production fixtures and jigs to improve repeatability and reduce setup time.</p>
-            <div class="tags-row"><span class="tag">Fixtures</span><span class="tag">Production</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">Bio-Materials Research</div>
-            <div class="proj-title">Composite Material Samples</div>
-            <p class="proj-desc">Physical prototypes and test specimens from the university-funded bio-implant research project.</p>
-            <div class="tags-row"><span class="tag">Research</span><span class="tag">Materials</span></div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Programming -->
-      <div class="modal-section-label" style="margin-top:1.5rem;">Computational &amp; Programming</div>
-      <div class="modal-grid">
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">Python</div>
-            <div class="proj-title">Computational Logic</div>
-            <p class="proj-desc">Numerical methods and process optimization algorithms applied to engineering problems.</p>
-            <div class="tags-row"><span class="tag">Python</span><span class="tag">Algorithms</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card">
-          <div class="placeholder" style="height:175px;font-size:.75rem;">[ INSERT PROJECT IMAGE ]</div>
-          <div class="proj-body">
-            <div class="proj-sub">Data Analysis</div>
-            <div class="proj-title">Engineering Data Pipelines</div>
-            <p class="proj-desc">Processing and visualizing experimental data from materials testing using Python and Pandas.</p>
-            <div class="tags-row"><span class="tag">Pandas</span><span class="tag">Data Viz</span></div>
-          </div>
-        </div>
-
-        <div class="card proj-card" style="border:2px dashed var(--border);box-shadow:none;background:var(--pearl);display:flex;align-items:center;justify-content:center;min-height:200px;">
-          <div style="text-align:center;padding:1.5rem;">
-            <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
-            <div style="font-size:.8rem;font-weight:600;color:var(--slate);">More projects coming soon</div>
-            <div style="font-size:.75rem;color:var(--slate-light);margin-top:.3rem;">Updated each semester</div>
-          </div>
-        </div>
-
-      </div>
-
-    </div><!-- /modal-body -->
-  </div><!-- /modal-box -->
-</div><!-- /modal-overlay -->
-
-
-<!-- FOOTER / CONTACT -->
-<!-- CONTACT FORM MODAL -->
-<div class="contact-modal-overlay" id="contactModal" onclick="handleContactOverlay(event)">
-  <div class="contact-modal-box" id="contactModalBox">
-
-    <div class="contact-modal-header">
-      <div class="contact-modal-title">Send Me a Message</div>
-      <button class="modal-close" onclick="closeContactModal()">✕</button>
-    </div>
-
-    <!-- Form -->
-    <div id="contactFormWrap">
-      <form class="contact-form" id="contactForm"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST">
-
-        <div class="form-field">
-          <label class="form-label" for="contactName">Your Name <span style="color:#ef4444;">*</span></label>
-          <input class="form-input" type="text" id="contactName" name="name"
-                 placeholder="e.g. Dr. John Smith" />
-          <div class="form-error" id="nameError">⚠ Name is required.</div>
-        </div>
-
-        <div class="form-field">
-          <label class="form-label" for="contactEmail">Your Email <span style="color:#ef4444;">*</span></label>
-          <input class="form-input" type="email" id="contactEmail" name="email"
-                 placeholder="e.g. john@university.edu" />
-          <div class="form-error" id="emailError">⚠ A valid email address is required.</div>
-        </div>
-
-        <div class="form-field">
-          <label class="form-label" for="contactMsg">Message</label>
-          <textarea class="form-input" id="contactMsg" name="message"
-                    placeholder="Write your message here..."></textarea>
-        </div>
-
-        <button type="submit" class="form-submit" id="formSubmitBtn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Send Message
-        </button>
-
-      </form>
-    </div>
-
-    <!-- Success state -->
-    <div class="form-success" id="formSuccess">
-      <div class="form-success-icon">✅</div>
-      <div class="form-success-title">Message Sent!</div>
-      <p class="form-success-sub">
-        Thank you for reaching out. I'll get back to you as soon as possible.
-      </p>
-      <button onclick="closeContactModal()" class="btn-teal" style="margin-top:1.5rem;width:100%;justify-content:center;">
-        Close
-      </button>
-    </div>
-
-  </div>
-</div>
 
 
 <footer id="contact">
@@ -2138,5 +2139,7 @@
     }
   });
 </script>
+
+
 </body>
 </html>
